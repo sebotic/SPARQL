@@ -1,7 +1,7 @@
 # SPARQL
 collection of SPARQL queries
 
-##### A query to retrieve all protein coding genes regulated by human miRNA hsa-miR-127-3p:
+##### A query to retrieve all protein coding genes regulated by human miRNA hsa-miR-127-3p: 
 
 ```sparql
 PREFIX wd: <http://www.wikidata.org/entity/>
@@ -15,8 +15,10 @@ select distinct * where {
 }
 
 ```
+[Execute](http://tinyurl.com/zmz4ekt)
 
-##### A query to retrieve all Gene Ontology annotations for genes regulated by the human miRNA hsa-miR-127-3p (www.wikidata.org/wiki/Q23839066):
+
+##### A query to retrieve all Gene Ontology annotations for genes regulated by the human miRNA [hsa-miR-127-3p](www.wikidata.org/wiki/Q23839066):
 
 ```sparql
 PREFIX wd: <http://www.wikidata.org/entity/>
@@ -32,3 +34,4 @@ select distinct ?protein ?label ?go_id ?go_label ?go where {
 } order by ?label
 
 ```
+[Execute](http://tinyurl.com/gpj48ps)
