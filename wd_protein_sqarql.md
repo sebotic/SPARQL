@@ -70,3 +70,34 @@ PREFIX wdt: <http://www.wikidata.org/prop/direct/>
             UNION {?protein wdt:P703 wd:Q83310} .
         }
 ```
+
+
+#### Get all PDB IDs which are shared by more than one protein item
+[execute](http://tinyurl.com/zasepo6)
+
+```sparql
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+select ?u ?p Where {
+	?p wdt:P638 ?u .
+    ?p2 wdt:P638 ?u .
+  
+	filter (?p != ?p2)  
+}
+
+group by ?u ?p
+```
+
+#### Get all human and mouse gene Wikidata item IDs and the NCBI Entrez IDs
+[execute](http://tinyurl.com/z6kfgrn)
+
+```sparql
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+SELECT * WHERE {
+	?p wdt:P351 ?entrez .
+    {?p wdt:P703 wd:Q5}
+    UNION {?p wdt:P703 wd:Q83310} .
+}
+```
