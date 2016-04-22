@@ -55,3 +55,18 @@ SELECT * WHERE {
   ?some_item p:P352 ?uniprot .
 }
 ```
+
+
+#### Get all human and mouse proteins based on the Uniprot ID
+[execute](http://tinyurl.com/z94m7an)
+
+```sparql
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+        SELECT * WHERE {
+	        ?protein wdt:P352 ?uniprot .
+            {?protein wdt:P703 wd:Q5}
+            UNION {?protein wdt:P703 wd:Q83310} .
+        }
+```
