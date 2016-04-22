@@ -36,3 +36,23 @@ describe <http://purl.uniprot.org/uniprot/P04637>
     }
     GROUP BY ?uniprot ?x ?y
 ```
+
+#### Get all Swissprot entries for human and mouse with the mapping to NCBI Entrez gene IDs
+[execute](http://sparql.uniprot.org/sparql/?format=html&query=PREFIX+taxon%3A%3Chttp%3A%2F%2Fpurl.uniprot.org%2Ftaxonomy%2F%3E+%0D%0APREFIX+up%3A%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E+%0D%0APREFIX+rdf%3A%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E+%0D%0A%0D%0A%0D%0A++++SELECT+DISTINCT+*+WHERE+{%0D%0A++++++++%3Funiprot+rdfs%3AseeAlso+%3Fgene+.%0D%0A++++++%09%3Funiprot+up%3Areviewed+%3Freviewed+.%0D%0A++++++%09{%3Funiprot+up%3Aorganism+taxon%3A9606}%0D%0A++++++%09UNION+{%3Funiprot+up%3Aorganism+taxon%3A10090}+.%0D%0A%0D%0A++++++%09FILTER+regex%28%3Fgene%2C+%22^http%3A%2F%2Fpurl.uniprot.org%2Fgeneid%2F%22%29+%0D%0A++++}%0D%0A++++GROUP+BY+%3Funiprot+%3Fgene+%3Freviewed)
+
+```sparql
+PREFIX taxon:<http://purl.uniprot.org/taxonomy/> 
+PREFIX up:<http://purl.uniprot.org/core/> 
+PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> 
+
+
+    SELECT DISTINCT * WHERE {
+        ?uniprot rdfs:seeAlso ?gene .
+      	?uniprot up:reviewed ?reviewed .
+      	{?uniprot up:organism taxon:9606}
+      	UNION {?uniprot up:organism taxon:10090} .
+
+      	FILTER regex(?gene, "^http://purl.uniprot.org/geneid/") 
+    }
+    GROUP BY ?uniprot ?gene ?reviewed
+```
