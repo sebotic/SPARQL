@@ -68,3 +68,15 @@ SELECT  *  WHERE {
   }
 }
 ```
+
+
+##### Count all triples in a triple store:
+[Execute](http://tinyurl.com/j8h5rxh) (on query.wikidata.org)
+
+```sparql
+
+select (count(*) as ?count) where {
+	?s ?p ?o .
+}
+
+```
