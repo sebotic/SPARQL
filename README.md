@@ -69,6 +69,23 @@ SELECT  *  WHERE {
 }
 ```
 
+The simplified version using the wikibase namespace:
+```sparql
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+
+SELECT DISTINCT ?prop ?pLabel WHERE {
+	VALUES ?geneID {"50943"}
+        ?gene wdt:P351 ?geneID ;
+        	?prop ?value .
+      	?p wikibase:directClaim ?prop .
+        SERVICE wikibase:label {
+     		bd:serviceParam wikibase:language "en" .
+  	}  
+}     
+```
+
 
 ##### Count all triples in a triple store:
 [Execute](http://tinyurl.com/j8h5rxh) (on query.wikidata.org)
