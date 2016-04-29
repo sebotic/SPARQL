@@ -16,3 +16,17 @@ SELECT DISTINCT ?cmpnd ?label WHERE {
     ?cmpnd rdfs:label ?label .
 }
 ```
+
+Use Wikdata SPARQL label service instead, to get only English labels
+[execute](http://tinyurl.com/jkevzwn)
+
+```sparql
+SELECT DISTINCT ?cmpnd ?cmpndLabel WHERE {
+    {?cmpnd wdt:P279 wd:Q11173 .} UNION
+  	{?cmpnd wdt:P31 wd:Q11173 .} 
+    
+  	SERVICE wikibase:label {
+            bd:serviceParam wikibase:language "en" .
+      }
+}
+```
