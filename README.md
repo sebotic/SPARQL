@@ -112,3 +112,34 @@ SELECT ?gene ?revision WHERE {
     ?gene schema:version ?revision . 
 }
 ```
+
+##### Get all human genes on chromosome 9 with a start position between 21 MB and 30 MB.
+[Execute](http://tinyurl.com/zgyqsmk)
+This query can be potentially useful for e.g. quick annotation of copy number abberations.
+
+```sparql
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wd: <http://www.wikidata.org/entity/> 
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX q: <http://www.wikidata.org/prop/qualifier/>
+PREFIX v: <http://www.wikidata.org/prop/statement/>
+
+SELECT distinct ?gene ?geneLabel ?start ?stop WHERE {
+  ?gene wdt:P1057 wd:Q840604 .
+  ?gene p:P644 ?statement .
+  ?statement v:P644 ?start .
+  ?statement q:P659 wd:Q20966585 . 
+  
+  ?gene p:P645 ?statement2 .
+  ?statement2 v:P645 ?stop .
+  ?statement2 q:P659 wd:Q20966585 . 
+  
+  SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+  }
+  
+  FILTER (xsd:integer(?start) > 21000000 && xsd:integer(?start) < 30000000)
+}
+ORDER BY ?geneLabel
+```
