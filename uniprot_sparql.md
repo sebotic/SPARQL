@@ -56,3 +56,47 @@ PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     }
     GROUP BY ?uniprot ?gene ?reviewed
 ```
+
+##### A federated query to get all human proteins with 'colorectal cancer' in their Uniprot disease annotation.
+The query currently only works on [sparql.uniprot.org](), because [query.wikidata.org]() does not allow federated queries. The query selects for GRCh38 genomic coordinates.
+
+```sparql
+PREFIX up: <http://purl.uniprot.org/core/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX v: <http://www.wikidata.org/prop/statement/>
+PREFIX q: <http://www.wikidata.org/prop/qualifier/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+
+SELECT ?gene ?geneLabel ?wdncbi ?start ?stop ?disease_text WHERE {    
+    SERVICE <https://query.wikidata.org/sparql> {    
+
+        ?gene wdt:P351 ?wdncbi ;
+              wdt:P703 wd:Q5;
+              rdfs:label ?geneLabel ;
+              p:P644 ?geneLocStart ;
+              p:P645 ?geneLocStop ;
+              wdt:P688 ?wd_protein .
+              
+        ?geneLocStart v:P644 ?start .
+        ?geneLocStart q:P659 wd:Q20966585 . 
+              
+        ?geneLocStop v:P645 ?stop .
+        ?geneLocStop q:P659 wd:Q20966585 . 
+  
+        ?wd_protein wdt:P352 ?uniprot_id ;
+                    wdt:P681 ?go_term .
+        ?go_term wdt:P686 "GO:0016020" .
+
+		FILTER (LANG(?geneLabel) = "en") .
+    }
+    BIND(IRI(CONCAT("http://purl.uniprot.org/uniprot/", ?uniprot_id)) as ?protein)
+        ?protein up:annotation ?annotation .
+        ?annotation a up:Disease_Annotation .
+        ?annotation up:disease ?disease_annotation .
+        ?disease_annotation <http://www.w3.org/2004/02/skos/core#prefLabel> ?disease_text .
+    FILTER(REGEX(?disease_text, "Colorectal cancer", "i"))
+}
+```
