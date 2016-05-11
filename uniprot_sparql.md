@@ -57,8 +57,8 @@ PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     GROUP BY ?uniprot ?gene ?reviewed
 ```
 
-##### A federated query to get all human proteins with 'colorectal cancer' in their Uniprot disease annotation.
-The query currently only works on [sparql.uniprot.org](), because [query.wikidata.org]() does not allow federated queries. The query selects for GRCh38 genomic coordinates.
+#### A federated query to get all human proteins with 'colorectal cancer' in their Uniprot disease annotation.
+The query currently only works on [](sparql.uniprot.org), because [](query.wikidata.org]) does not allow federated queries. The query selects for GRCh38 genomic coordinates.
 
 ```sparql
 PREFIX up: <http://purl.uniprot.org/core/>
