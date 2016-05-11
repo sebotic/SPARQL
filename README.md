@@ -97,3 +97,18 @@ select (count(*) as ?count) where {
 }
 
 ```
+
+##### Get the latest Wikidata revision ID for all human genes :
+[Execute](http://tinyurl.com/jjgkqr4)
+
+```sparql
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX schema: <http://schema.org/>
+
+SELECT ?gene ?revision WHERE {
+	?gene wdt:P351 ?entrez . 
+  	?gene wdt:P703 wd:Q5 .
+    ?gene schema:version ?revision . 
+}
+```
