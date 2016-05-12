@@ -101,3 +101,28 @@ SELECT * WHERE {
     UNION {?p wdt:P703 wd:Q83310} .
 }
 ```
+
+
+#### Get all proteins with Gene Ontology annotation for biological process including all qualifiers
+[execute](http://tinyurl.com/h7rjhsg)
+
+```sparql
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+
+SELECT ?p ?up ?s2 ?bioProcess ?qualifier WHERE {
+      ?p wdt:P352 ?up .
+      ?p wdt:P703 wd:Q5 .
+      ?p p:P682 ?s2 .
+ 
+  	  ?s2 ps:P682 ?bioProcess .
+  	  ?s2 ?pr ?qualifier .
+      
+      FILTER(STRSTARTS(STR(?pr), "http://www.wikidata.org/prop/qualifier/"))
+
+  
+}
+```
