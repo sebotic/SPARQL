@@ -126,3 +126,15 @@ SELECT ?p ?up ?s2 ?bioProcess ?qualifier WHERE {
   
 }
 ```
+
+#### Retrieve all human protein (SwissProt) Gene Ontology annotations in Wikidata
+[execute](http://tinyurl.com/hqcke55)
+
+```sparql
+SELECT * WHERE {
+  {?p wdt:P680 ?go .} union
+  {?p wdt:P681 ?go .} union
+  {?p wdt:P682 ?go .} 
+  ?p wdt:P703 wd:Q5 .
+}
+```
