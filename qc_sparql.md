@@ -12,3 +12,18 @@ SELECT * WHERE {
   ?gene wdt:P31 wd:Q4167410 .
 }
 ```
+
+##### Retrieve all Wikidata items which share a MeSH ID. That can point to duplicate human disease items in Wikidata
+[Execute](http://tinyurl.com/zlhg4e9)
+
+```sparql
+SELECT ?d2 ?mesh (COUNT(?mesh) + 1 as ?mesh_count) WHERE {
+        ?d p:P486/ps:P486 ?mesh .
+        ?d2 p:P486/ps:P486 ?mesh .
+
+	FILTER (?d != ?d2)
+}
+GROUP BY ?d2 ?mesh
+HAVING (?mesh_count > 1)
+ORDER BY ?mesh
+```
