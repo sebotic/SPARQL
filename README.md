@@ -143,3 +143,20 @@ SELECT distinct ?gene ?geneLabel ?start ?stop WHERE {
 }
 ORDER BY ?geneLabel
 ```
+
+##### Get counts for all human gene subclasses
+[Execute](http://tinyurl.com/j4z5kzf)
+
+```sparql
+SELECT DISTINCT ?subc ?subcLabel (COUNT(?subc) as ?count) WHERE {
+    ?g wdt:P351 ?entrez .
+    ?g wdt:P703 wd:Q5 .
+  
+    ?g wdt:P279 ?subc .
+  
+    SERVICE wikibase:label {
+    	bd:serviceParam wikibase:language "en" .
+    }  
+}
+GROUP BY ?subc ?subcLabel
+```
