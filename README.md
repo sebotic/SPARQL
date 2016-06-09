@@ -190,3 +190,21 @@ SELECT DISTINCT ?subc ?subcLabel (COUNT(?subc) as ?count) WHERE {
 }
 GROUP BY ?subc ?subcLabel
 ```
+
+##### Get all databases and bio-databases which are in Wikidata
+Classified by instance of (P31) (most of them) or subclass of (P279) (a few).
+
+[Execute](http://tinyurl.com/zvfo86t)
+
+```sparql
+SELECT DISTINCT ?d ?dLabel WHERE {
+	{?d wdt:P31 wd:Q8513 .} UNION
+	{?d wdt:P31 wd:Q4117139 .} UNION
+	{?d wdt:P279 wd:Q8513 .} UNION
+	{?d wdt:P279 wd:Q4117139 .}
+  
+	SERVICE wikibase:label {
+		bd:serviceParam wikibase:language "en" .
+	}
+}
+```
