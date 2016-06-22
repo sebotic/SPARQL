@@ -27,3 +27,13 @@ GROUP BY ?d2 ?mesh
 HAVING (?mesh_count > 1)
 ORDER BY ?mesh
 ```
+
+##### Get all Wikidata items with Gene Ontology IDs which miss the 'GO:' prefix 
+[Execute](http://tinyurl.com/hher4vl)
+
+```sparql
+SELECT DISTINCT ?gene ?go WHERE {
+   ?gene wdt:P686 ?go .
+   FILTER(!REGEX(?go, "^GO:[0-9]", "i"))
+}
+```
