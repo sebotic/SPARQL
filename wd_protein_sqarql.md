@@ -138,3 +138,19 @@ SELECT * WHERE {
   ?p wdt:P703 wd:Q5 .
 }
 ```
+
+#### Retrieve all human and mouse Gene Ontology annotations
+[execute](http://tinyurl.com/zc2l39z)
+
+```sparql
+SELECT ?p ?up ?molecular_function ?cellular_component ?biological_process WHERE {
+	?p wdt:P352 ?up .
+    {?p wdt:P703 wd:Q5} UNION
+    {?p wdt:P703 wd:Q83310}
+    
+    {?p wdt:P680 ?molecular_function} union
+    {?p wdt:P681 ?cellular_component} union
+  	{?p wdt:P682 ?biological_process} 
+}
+ORDER BY ?p
+```
