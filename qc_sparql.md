@@ -48,3 +48,23 @@ SELECT * WHERE {
   	FILTER NOT EXISTS {?p wdt:P702 ?enc}
 }
 ```
+
+##### Get mouse genes with HGNC gene symbol
+[Execute](http://tinyurl.com/hydt8xf)
+
+```sparql
+SELECT * WHERE {
+  	?g wdt:P353 ?hgnc_symbol .
+	?g wdt:P703 wd:Q83310 .   
+}
+```
+
+##### Get human genes with HGNC symbol but withou HGNC ID (this suggests that the HGNC symbol is wrong, or HGNC ID really missing)
+[Execute](http://tinyurl.com/j6jevyp)
+
+```sparql
+SELECT * WHERE {
+  	{?g wdt:P353 ?hgnc_symbol .} MINUS
+	{?g wdt:P354 ?hgnc_id .}   
+}
+```
