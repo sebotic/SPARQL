@@ -91,3 +91,27 @@ SELECT DISTINCT * WHERE {
  	FILTER (?csmiles  != '' ||  ?cas  != '')
 }
 ```
+
+##### Retrieve chemical compounds with CAS number or canonical SMILES but either without any references or a reference stating that the value has been imported from Russian, English or German Wikipedia.
+[execute]()
+```sparql
+SELECT DISTINCT * WHERE {
+    {?cmpnd wdt:P279 wd:Q11173 .} UNION
+    {?cmpnd wdt:P31 wd:Q11173 .}
+  
+    OPTIONAL {
+      {?cmpnd p:P233 ?csmiles FILTER NOT EXISTS {?csmiles prov:wasDerivedFrom ?smref}} UNION
+      {?cmpnd p:P233 ?csmiles FILTER EXISTS {?csmiles prov:wasDerivedFrom <http://www.wikidata.org/reference/d6e3ab4045fb3f3feea77895bc6b27e663fc878a>}} UNION # imported from Russian Wikipedia
+      {?cmpnd p:P233 ?csmiles FILTER EXISTS {?csmiles prov:wasDerivedFrom wdref:7eb64cf9621d34c54fd4bd040ed4b61a88c4a1a0}} UNION # imported from English Wikipedia
+      {?cmpnd p:P233 ?csmiles FILTER EXISTS {?csmiles prov:wasDerivedFrom wdref:004ec6fbee857649acdbdbad4f97b2c8571df97b}} # importe from German Wikipedia
+    }
+    OPTIONAL {
+      {?cmpnd p:P231 ?cas FILTER NOT EXISTS {?cas prov:wasDerivedFrom ?smref}.} UNION
+      {?cmpnd p:P231 ?cas FILTER EXISTS {?cas prov:wasDerivedFrom wdref:d6e3ab4045fb3f3feea77895bc6b27e663fc878a}} UNION
+      {?cmpnd p:P231 ?cas FILTER EXISTS {?cas prov:wasDerivedFrom wdref:7eb64cf9621d34c54fd4bd040ed4b61a88c4a1a0}} UNION
+      {?cmpnd p:P231 ?cas FILTER EXISTS {?cas prov:wasDerivedFrom wdref:004ec6fbee857649acdbdbad4f97b2c8571df97b}}
+    }
+ 	FILTER (?csmiles  != '' ||  ?cas  != '')
+}
+
+```
