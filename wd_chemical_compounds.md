@@ -77,3 +77,17 @@ SELECT ?compound ?compoundLabel ?iuphar_id ?inchi_key ?inchi ?canonical_smiles W
     
 } ORDER BY ?compoundLabel
 ```
+
+##### Retrieve chemical compounds with CAS number or canonical SMILES but without references
+[execute](http://tinyurl.com/zb2v2ro)
+
+```sparql
+SELECT DISTINCT * WHERE {
+    {?cmpnd wdt:P279 wd:Q11173 .} UNION
+    {?cmpnd wdt:P31 wd:Q11173 .}
+  
+    OPTIONAL {?cmpnd p:P233 ?csmiles FILTER NOT exists {?csmiles prov:wasDerivedFrom ?smref}.}
+    OPTIONAL {?cmpnd p:P231 ?cas FILTER NOT exists {?cas prov:wasDerivedFrom ?smref}.}
+ 	FILTER (?csmiles  != '' ||  ?cas  != '')
+}
+```
