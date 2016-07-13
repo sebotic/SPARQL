@@ -221,9 +221,10 @@ SELECT ?vals ?property ?propLabel WHERE {
 }
 ```
 <br/>  
-##### Get all items 3 nodes away from a WD item and all edges in between (here, [Vemurafenib](https://www.wikidata.org/wiki/Q423111))
+##### Get all items 4 nodes away from a WD item and all edges in between (here, [Vemurafenib](https://www.wikidata.org/wiki/Q423111))
 [Execute](http://tinyurl.com/hwr2hos)
-Uncommenting the second filter will just return the edges which lead from Q423111 to Q925809. The limit can be removed, but then, the query will not finish in a reasonable time if executed in a browser. With a Python script, the query returns a json object with 226 MB size (as of 07/11/2016). 
+
+Uncommenting the second filter will only return the edges which lead from Q423111 to Q925809. The limit can be removed, but then, the query will not finish in a reasonable time if executed in a browser. With a Python script, the query returns a json object with 226 MB size within a few minutes (as of 07/11/2016). 
 
 ```sparql
 SELECT *  WHERE {
