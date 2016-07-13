@@ -208,3 +208,27 @@ SELECT DISTINCT ?d ?dLabel WHERE {
 	}
 }
 ```
+
+##### Get all values with property number and property label on an item (here, [Indole](https://www.wikidata.org/wiki/Q319541))
+[Execute](http://tinyurl.com/hzn6v7d)
+
+```sparql
+SELECT ?vals ?property ?propLabel WHERE {
+  wd:Q319541 ?prop ?vals FILTER (!(SUBSTR(str(?vals), 1, 41) = 'http://www.wikidata.org/entity/statement/')).
+  ?property ?ref ?prop .
+  ?property rdfs:label ?propLabel FILTER (LANG(?propLabel) = 'en') .
+}
+```
+
+
+##### Get all items 3 nodes away from a WD item and all edges in between (here, [Vemurafenib](https://www.wikidata.org/wiki/Q423111))
+[Execute](http://tinyurl.com/hwr2hos)
+Uncommenting the second filter will just return the edges which lead from Q423111 to Q925809. The limit can be removed, but then, the query will not finish in a reasonable time if executed in a browser. With a Python script, the query returns a json object with 226 MB size (as of 07/11/2016). 
+
+```sparql
+SELECT *  WHERE {
+	?c ?p4 [?p3 [?p2 [?p1 wd:Q423111]]] #FILTER (?c = <http://www.wikidata.org/entity/Q925809>)
+       FILTER((SUBSTR(str(?c), 1, 32) = 'http://www.wikidata.org/entity/Q'))
+}
+LIMIT 100000
+```
