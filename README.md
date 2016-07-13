@@ -17,7 +17,7 @@ select distinct * where {
 ```
 [Execute](http://tinyurl.com/zmz4ekt)
 
-
+<br/>
 ##### A query to retrieve all Gene Ontology annotations for genes regulated by the human miRNA [hsa-miR-127-3p](https://www.wikidata.org/wiki/Q23839066):
 
 ```sparql
@@ -36,6 +36,7 @@ select distinct ?protein ?label ?go_id ?go_label ?go where {
 ```
 [Execute](http://tinyurl.com/gpj48ps)
 
+<br/>
 ##### A query to retrieve all property names present on a gene with NCBI entrez gene ID (in this case FOXP3). This is using standard wikidata namespace.
 
 Using the wikibase: namespace this can be done more efficiently, as id does not require the string operations to get to the entity (wd:) namespace.
@@ -86,7 +87,7 @@ SELECT DISTINCT ?prop ?pLabel WHERE {
 }     
 ```
 
-
+<br/>
 ##### Count all triples in a triple store:
 [Execute](http://tinyurl.com/j8h5rxh) (on query.wikidata.org)
 
@@ -97,7 +98,7 @@ select (count(*) as ?count) where {
 }
 
 ```
-
+<br/>
 ##### Get all statement properties of a certain item, here the gene with Entrez ID 50943
 [Execute](http://tinyurl.com/jtydugn)
 
@@ -127,7 +128,7 @@ SELECT  *  WHERE {
   }
 }
 ```
-
+<br/>
 ##### Get the latest Wikidata revision ID for all human genes :
 [Execute](http://tinyurl.com/jjgkqr4)
 
@@ -142,7 +143,7 @@ SELECT ?gene ?revision WHERE {
     ?gene schema:version ?revision . 
 }
 ```
-
+<br/>
 ##### Get all human genes on chromosome 9 with a start position between 21 MB and 30 MB.
 [Execute](http://tinyurl.com/zgyqsmk)
 This query can be potentially useful for e.g. quick annotation of copy number abberations.
@@ -173,7 +174,7 @@ SELECT distinct ?gene ?geneLabel ?start ?stop WHERE {
 }
 ORDER BY ?geneLabel
 ```
-
+<br/>
 ##### Get counts for all human gene subclasses
 [Execute](http://tinyurl.com/j4z5kzf)
 
@@ -190,7 +191,7 @@ SELECT DISTINCT ?subc ?subcLabel (COUNT(?subc) as ?count) WHERE {
 }
 GROUP BY ?subc ?subcLabel
 ```
-
+<br/>
 ##### Get all databases and bio-databases which are in Wikidata
 Classified by instance of (P31) (most of them) or subclass of (P279) (a few).
 
@@ -208,7 +209,7 @@ SELECT DISTINCT ?d ?dLabel WHERE {
 	}
 }
 ```
-
+<br/>
 ##### Get all values with property number and property label on an item (here, [Indole](https://www.wikidata.org/wiki/Q319541))
 [Execute](http://tinyurl.com/hzn6v7d)
 
@@ -219,8 +220,7 @@ SELECT ?vals ?property ?propLabel WHERE {
   ?property rdfs:label ?propLabel FILTER (LANG(?propLabel) = 'en') .
 }
 ```
-
-
+<br/>  
 ##### Get all items 3 nodes away from a WD item and all edges in between (here, [Vemurafenib](https://www.wikidata.org/wiki/Q423111))
 [Execute](http://tinyurl.com/hwr2hos)
 Uncommenting the second filter will just return the edges which lead from Q423111 to Q925809. The limit can be removed, but then, the query will not finish in a reasonable time if executed in a browser. With a Python script, the query returns a json object with 226 MB size (as of 07/11/2016). 
