@@ -115,3 +115,75 @@ SELECT DISTINCT * WHERE {
 }
 
 ```
+</br>
+##### Retrieve all chemical identifiers and properties currently in Wikidata
+[execute](http://tinyurl.com/hly5pew)
+```sparql
+SELECT * WHERE {
+    {?cmpnd wdt:P279 wd:Q11173 .} UNION
+    {?cmpnd wdt:P31 wd:Q11173 .}
+    optional{?cmpnd wdt:P2129 ?idlh .}
+    optional{?cmpnd wdt:P2177 ?solubility .} 
+    optional{?cmpnd wdt:P2404 ?time_weighted_average_exposure_limit .} 
+    optional{?cmpnd wdt:P2067 ?mass.} 
+    optional{?cmpnd wdt:P2119 ?vapor_pressure .} 
+    optional{?cmpnd wdt:P2101 ?melting_point .} 
+    optional{?cmpnd wdt:P661 ?chemSpider .} 
+    optional{?cmpnd wdt:P662 ?pubchem_cid .} 
+    optional{?cmpnd wdt:P652 ?unii .} 
+    optional{?cmpnd wdt:P657 ?rtecs_number .} 
+    optional{?cmpnd wdt:P1542 ?cause_of .} 
+    optional{?cmpnd wdt:P486 ?mesh_id .} 
+    optional{?cmpnd wdt:P665 ?kegg_id .} 
+    optional{?cmpnd wdt:P672 ?mesh_code .} 
+    optional{?cmpnd wdt:P679 ?zvg_number .} 
+    optional{?cmpnd wdt:P683 ?chebi .} 
+    optional{?cmpnd wdt:P715 ?drugbank .} 
+    optional{?cmpnd wdt:P2275 ?who_inn .} 
+    optional{?cmpnd wdt:P2877 ?surechembl .}
+    optional{?cmpnd wdt:P2892 ?umls_cui .}
+    optional{?cmpnd wdt:P636 ?route_of_administration .}
+    optional{?cmpnd wdt:P592 ?chembl .}
+    optional{?cmpnd wdt:P595 ?iuphar .}
+    optional{?cmpnd wdt:P231 ?cas .}
+    optional{?cmpnd wdt:P233 ?csmiles .}
+    optional{?cmpnd wdt:P234 ?inchi .}
+    optional{?cmpnd wdt:P235 ?inchi_key .}
+    optional{?cmpnd wdt:P274 ?chemical_formula .}
+    optional{?cmpnd wdt:P267 ?atc_code .}
+    optional{?cmpnd wdt:P2017 ?ismiles .}
+    optional{?cmpnd wdt:P2153 ?pubchem_sid .}
+
+    optional{?cmpnd wdt:P2054 ?density .}
+    optional{?cmpnd wdt:P1117 ?pka .}
+    optional{?cmpnd wdt:P227 ?gnd_id .}
+    optional{?cmpnd wdt:P589 ?point_group .}
+    optional{?cmpnd wdt:P556 ?crystal_system .}
+    optional{?cmpnd wdt:P2075 ?speed_of_sound .}
+    optional{?cmpnd wdt:P2102 ?boiling_point .}
+    optional{?cmpnd wdt:P2260 ?ionization_energy .}
+    optional{?cmpnd wdt:P2202 ?lower_flammable_limit .}
+    optional{?cmpnd wdt:P2128 ?flash_point .}
+    optional{?cmpnd wdt:P2203 ?upper_flammable_limit .}
+    optional{?cmpnd wdt:P349 ?ndl_id .}
+    optional{?cmpnd wdt:P232 ?einecs_number .}
+    optional{?cmpnd wdt:P244 ?lcauth_id .}
+    optional{?cmpnd wdt:P628 ?e_number .}
+    optional{?cmpnd wdt:P695 ?un_number .}
+    optional{?cmpnd wdt:P690 ?space_group .}
+    optional{?cmpnd wdt:P700 ?kemler_code .}
+    optional{?cmpnd wdt:P728 ?ghs_hazard_statement .}
+    optional{?cmpnd wdt:P874 ?un_class .}
+    optional{?cmpnd wdt:P876 ?un_packaging_group .}
+    optional{?cmpnd wdt:P1931 ?niosh_pocket_guide_id .}
+    optional{?cmpnd wdt:P995 ?nfpa_reactivity .}
+    optional{?cmpnd wdt:P940 ?ghs_precautionary_statements .}
+    optional{?cmpnd wdt:P993 ?nfpa_health .}
+    optional{?cmpnd wdt:P94	?nfpa_fire .}
+    optional{?cmpnd wdt:P2057 ?hmdb_id .}
+    optional{?cmpnd wdt:P2084 ?zinc_id .}
+    optional{?cmpnd wdt:P2062 ?hsdb_id .}
+    optional{?cmpnd wdt:P2796 ?3dmet_id .}
+}
+
+```
