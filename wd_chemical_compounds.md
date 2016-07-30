@@ -117,7 +117,7 @@ SELECT DISTINCT * WHERE {
 ```
 </br>
 ##### Retrieve all chemical identifiers and properties currently in Wikidata
-[execute](http://tinyurl.com/hly5pew)
+[execute](http://tinyurl.com/zqjo2qx)
 ```sparql
 SELECT * WHERE {
     {?cmpnd wdt:P279 wd:Q11173 .} UNION
@@ -185,5 +185,5 @@ SELECT * WHERE {
     optional{?cmpnd wdt:P2062 ?hsdb_id .}
     optional{?cmpnd wdt:P2796 ?3dmet_id .}
 }
-
+ORDER BY ?cmpnd
 ```
