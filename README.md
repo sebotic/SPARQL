@@ -128,7 +128,21 @@ SELECT  *  WHERE {
   }
 }
 ```
-<br/>
+</br>
+#### Get all property IDs with an entity URI for 2 different compounds
+[Execute](http://tinyurl.com/zjs6ax2)
+
+```sparql
+SELECT DISTINCT ?property ?propLabel WHERE {
+  VALUES ?v {wd:Q407431 wd:Q153}
+  ?v ?prop ?vals FILTER (!(SUBSTR(str(?vals), 1, 41) = 'http://www.wikidata.org/entity/statement/')).
+  ?property ?ref ?prop .
+  ?property rdfs:label ?propLabel FILTER (LANG(?propLabel) = 'en') .
+}
+
+```
+
+</br>
 ##### Get the latest Wikidata revision ID for all human genes :
 [Execute](http://tinyurl.com/jjgkqr4)
 
