@@ -186,6 +186,10 @@ SELECT * WHERE {
     OPTIONAL{?cmpnd wdt:P2796 ?3dmet_id .}
     OPTIONAL{?cmpnd wdt:P3013 ?surface_tension .}
     OPTIONAL{?cmpnd wdt:P2993 ?part_coeff_water_oct .}
+  	OPTIONAL{?cmpnd wdt:P3078 ?standard_enthalpy_of_formation .}
+  	OPTIONAL{?cmpnd wdt:P3071 ?standard_molar_entropy .}
+  	OPTIONAL{?cmpnd wdt:P3070 ?dynamic_viscosity .} 
+  	OPTIONAL{?cmpnd wdt:P2118 ?kinematic_viscosity .}
 }
 ORDER BY ?cmpnd
 ```
