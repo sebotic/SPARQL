@@ -68,3 +68,16 @@ SELECT * WHERE {
 	{?g wdt:P354 ?hgnc_id .}   
 }
 ```
+
+##### Get all compounds with CAS numbers which are not ['instance of'](http://www.wikidata.org/entity/P31)  or ['subclass of'](http://www.wikidata.org/entity/P279) a [chemical compound](http://www.wikidata.org/entity/Q11173)
+[Execute](http://tinyurl.com/jt7p2n2)
+
+```sparql
+SELECT * WHERE {
+  ?cmpnd wdt:P231 ?pc .
+  FILTER NOT EXISTS{
+	{?cmpnd wdt:P279 wd:Q11173 .} UNION
+    {?cmpnd wdt:P31 wd:Q11173 .}
+    }
+}
+```
