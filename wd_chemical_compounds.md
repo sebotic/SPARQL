@@ -116,6 +116,24 @@ SELECT DISTINCT * WHERE {
 
 ```
 </br>
+
+##### Retrieve all items which are of subclass of instance [chemical substance](http://www.wikidata.org/entity/Q79529)
+Chemical substances are currently defined as all non-single cemical compound mixtures or substance classes in Wikidata. The present query also returns item labels, prefering English labels, if no English label is present, it falls back to German labels. </br>
+</br>
+[Execute](http://tinyurl.com/j8ee42e)
+```sparql
+SELECT ?substance ?substanceLabel WHERE {
+	{?substance wdt:P31  wd:Q79529 .} UNION
+	{?substance wdt:P279  wd:Q79529 .}
+  
+  	SERVICE wikibase:label {
+            bd:serviceParam wikibase:language "en" .
+      		bd:serviceParam wikibase:language "de" .
+    }
+}
+```
+
+</br>
 ##### Retrieve all chemical identifiers and properties currently in Wikidata
 [execute](http://tinyurl.com/zy5ry5q)
 ```sparql
@@ -193,3 +211,5 @@ SELECT * WHERE {
 }
 ORDER BY ?cmpnd
 ```
+
+
