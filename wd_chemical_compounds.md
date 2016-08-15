@@ -211,5 +211,154 @@ SELECT * WHERE {
 }
 ORDER BY ?cmpnd
 ```
+</br>
+Extended version of the above query, which should aggregate all items which return more than one value per statement. Unformtunately, that does not work with query.wikidata.org, because the query string is too long. But it can be shortened as desired. 
 
+```sparql
+SELECT 
+	?cmpnd 
+	(GROUP_CONCAT(DISTINCT(?idlh_1 separator="|") as ?idlh)
+	(GROUP_CONCAT(DISTINCT(?solubility_1); separator="|") as ?solubility)
+	(GROUP_CONCAT(DISTINCT(?time_weighted_average_exposure_limit_1); separator="|") as ?time_weighted_average_exposure_limit)
+    (GROUP_CONCAT(DISTINCT(?mass_1); separator="|") as ?mass)
+	(GROUP_CONCAT(DISTINCT(?vapor_pressure_1); separator="|") as ?vapor_pressure)
+	(GROUP_CONCAT(DISTINCT(?melting_point_1); separator="|") as ?melting_point)
+    (GROUP_CONCAT(DISTINCT(?chemSpider_1); separator="|") as ?chemSpider)
+    (GROUP_CONCAT(DISTINCT(?pubchem_cid_1); separator="|") as ?pubchem_cid)
+    (GROUP_CONCAT(DISTINCT(?unii_1); separator="|") as ?unii)
+    (GROUP_CONCAT(DISTINCT(?rtecs_number_1); separator="|") as ?rtecs_number)
+    (GROUP_CONCAT(DISTINCT(?cause_of_1); separator="|") as ?cause_of)
+    (GROUP_CONCAT(DISTINCT(?mesh_id_1); separator="|") as ?mesh_id)
+    (GROUP_CONCAT(DISTINCT(?kegg_id_1); separator="|") as ?kegg_id)
+    (GROUP_CONCAT(DISTINCT(?mesh_code_1); separator="|") as ?mesh_code)
+    (GROUP_CONCAT(DISTINCT(?zvg_number_1); separator="|") as ?zvg_number)
+    (GROUP_CONCAT(DISTINCT(?chebi_1); separator="|") as ?chebi)
+    (GROUP_CONCAT(DISTINCT(?drugbank_1); separator="|") as ?drugbank)
+    (GROUP_CONCAT(DISTINCT(?who_inn_1); separator="|") as ?who_inn)
+    (GROUP_CONCAT(DISTINCT(?surechembl_1); separator="|") as ?surechembl)
+    (GROUP_CONCAT(DISTINCT(?umls_cui_1); separator="|") as ?umls_cui)
+    (GROUP_CONCAT(DISTINCT(?route_of_administration_1); separator="|") as ?route_of_administration)
+    (GROUP_CONCAT(DISTINCT(?chembl_1); separator="|") as ?chembl)
+    (GROUP_CONCAT(DISTINCT(?iuphar_1); separator="|") as ?iuphar)
+    (GROUP_CONCAT(DISTINCT(?cas_1); separator="|") as ?cas)
+    (GROUP_CONCAT(DISTINCT(?csmiles_1); separator="|") as ?csmiles)
+    (GROUP_CONCAT(DISTINCT(?inchi_1); separator="|") as ?inchi)
+    (GROUP_CONCAT(DISTINCT(?inchi_key_1); separator="|") as ?inchi_key)
+    (GROUP_CONCAT(DISTINCT(?chemical_formula_1); separator="|") as ?chemical_formula)
+    (GROUP_CONCAT(DISTINCT(?atc_code_1); separator="|") as ?atc_code)
+	(GROUP_CONCAT(DISTINCT(?ismiles_1); separator="|") as ?ismiles)
+    (GROUP_CONCAT(DISTINCT(?pubchem_sid_1); separator="|") as ?pubchem_sid)
+    
+	(GROUP_CONCAT(DISTINCT(?density_1); separator="|") as ?density)
+    (GROUP_CONCAT(DISTINCT(?pka_1); separator="|") as ?pka)
+    (GROUP_CONCAT(DISTINCT(?gnd_id_1); separator="|") as ?gnd_id)
+    (GROUP_CONCAT(DISTINCT(?point_group_1); separator="|") as ?point_group)
+    (GROUP_CONCAT(DISTINCT(?crystal_system_1); separator="|") as ?crystal_system)
+    (GROUP_CONCAT(DISTINCT(?speed_of_sound_1); separator="|") as ?speed_of_sound)
+    (GROUP_CONCAT(DISTINCT(?boiling_point_1); separator="|") as ?boiling_point)
+    (GROUP_CONCAT(DISTINCT(?ionization_energy_1); separator="|") as ?ionization_energy)
+    (GROUP_CONCAT(DISTINCT(?lower_flammable_limit_1); separator="|") as ?lower_flammable_limit)
+    (GROUP_CONCAT(DISTINCT(?flash_point_1); separator="|") as ?flash_point)
+    (GROUP_CONCAT(DISTINCT(?upper_flammable_limit_1); separator="|") as ?upper_flammable_limit)
+    (GROUP_CONCAT(DISTINCT(?ndl_id_1); separator="|") as ?ndl_id)
+    (GROUP_CONCAT(DISTINCT(?einecs_number_1); separator="|") as ?einecs_number)
+    (GROUP_CONCAT(DISTINCT(?lcauth_id_1); separator="|") as ?lcauth_id)
+    (GROUP_CONCAT(DISTINCT(?e_number_1); separator="|") as ?e_number)
+    (GROUP_CONCAT(DISTINCT(?un_number_1); separator="|") as ?un_number)
+    (GROUP_CONCAT(DISTINCT(?space_group_1); separator="|") as ?space_group)
+    (GROUP_CONCAT(DISTINCT(?kemler_code_1); separator="|") as ?kemler_code)
+    (GROUP_CONCAT(DISTINCT(?ghs_hazard_statement_1); separator="|") as ?ghs_hazard_statement)
+    (GROUP_CONCAT(DISTINCT(?un_class_1); separator="|") as ?un_class)
+    (GROUP_CONCAT(DISTINCT(?un_packaging_group_1); separator="|") as ?un_packaging_group)
+    (GROUP_CONCAT(DISTINCT(?niosh_pocket_guide_id_1); separator="|") as ?niosh_pocket_guide_id)
+    (GROUP_CONCAT(DISTINCT(?nfpa_reactivity_1); separator="|") as ?nfpa_reactivity)
+    (GROUP_CONCAT(DISTINCT(?ghs_precautionary_statements_1); separator="|") as ?ghs_precautionary_statements)
+    (GROUP_CONCAT(DISTINCT(?nfpa_health_1); separator="|") as ?nfpa_health)
+    (GROUP_CONCAT(DISTINCT(?nfpa_fire_1); separator="|") as ?nfpa_fire)
+    (GROUP_CONCAT(DISTINCT(?hmdb_id_1); separator="|") as ?hmdb_id)
+    (GROUP_CONCAT(DISTINCT(?zinc_id_1); separator="|") as ?zinc_id)
+    (GROUP_CONCAT(DISTINCT(?hsdb_id_1); separator="|") as ?hsdb_id)
+    (GROUP_CONCAT(DISTINCT(?3dmet_id_1); separator="|") as ?3dmet_id)
+    (GROUP_CONCAT(DISTINCT(?surface_tension_1); separator="|") as ?surface_tension)
+    (GROUP_CONCAT(DISTINCT(?part_coeff_water_oct_1); separator="|") as ?part_coeff_water_oct)
+    (GROUP_CONCAT(DISTINCT(?standard_enthalpy_of_formation_1); separator="|") as ?standard_enthalpy_of_formation)
+  	(GROUP_CONCAT(DISTINCT(?standard_molar_entropy_1); separator="|") as ?standard_molar_entropy)
+  	(GROUP_CONCAT(DISTINCT(?dynamic_viscosity_1); separator="|") as ?dynamic_viscosity)
+	(GROUP_CONCAT(DISTINCT(?kinematic_viscosity_1); separator="|") as ?kinematic_viscosity)
 
+WHERE {
+    {?cmpnd wdt:P279 wd:Q11173 .} UNION
+    {?cmpnd wdt:P31 wd:Q11173 .} UNION
+    {?cmpnd wdt:P662 ?cid .}
+   
+   	OPTIONAL{?cmpnd wdt:P2129 ?idlh_1 .
+    OPTIONAL{?cmpnd wdt:P2177 ?solubility_1 .} 
+    OPTIONAL{?cmpnd wdt:P2404 ?time_weighted_average_exposure_limit_1 .} 
+    OPTIONAL{?cmpnd wdt:P2067 ?mass_1.} 
+    OPTIONAL{?cmpnd wdt:P2119 ?vapor_pressure_1 .} 
+    OPTIONAL{?cmpnd wdt:P2101 ?melting_point_1 .} 
+    OPTIONAL{?cmpnd wdt:P661 ?chemSpider_1 .} 
+    OPTIONAL{?cmpnd wdt:P662 ?pubchem_cid_1 .} 
+    OPTIONAL{?cmpnd wdt:P652 ?unii_1 .} 
+    OPTIONAL{?cmpnd wdt:P657 ?rtecs_number_1 .} 
+    OPTIONAL{?cmpnd wdt:P1542 ?cause_of_1 .} 
+    OPTIONAL{?cmpnd wdt:P486 ?mesh_id_1 .} 
+    OPTIONAL{?cmpnd wdt:P665 ?kegg_id_1 .} 
+    OPTIONAL{?cmpnd wdt:P672 ?mesh_code_1 .} 
+    OPTIONAL{?cmpnd wdt:P679 ?zvg_number_1 .} 
+    OPTIONAL{?cmpnd wdt:P683 ?chebi_1 .} 
+    OPTIONAL{?cmpnd wdt:P715 ?drugbank_1 .} 
+    OPTIONAL{?cmpnd wdt:P2275 ?who_inn_1 .} 
+    OPTIONAL{?cmpnd wdt:P2877 ?surechembl_1 .}
+    OPTIONAL{?cmpnd wdt:P2892 ?umls_cui_1 .}
+    OPTIONAL{?cmpnd wdt:P636 ?route_of_administration_1 .}
+    OPTIONAL{?cmpnd wdt:P592 ?chembl_1 .}
+    OPTIONAL{?cmpnd wdt:P595 ?iuphar_1 .}
+    OPTIONAL{?cmpnd wdt:P231 ?cas_1 .}
+    OPTIONAL{?cmpnd wdt:P233 ?csmiles_1 .}
+    OPTIONAL{?cmpnd wdt:P234 ?inchi_1 .}
+    OPTIONAL{?cmpnd wdt:P235 ?inchi_key_1 .}
+    OPTIONAL{?cmpnd wdt:P274 ?chemical_formula_1 .}
+    OPTIONAL{?cmpnd wdt:P267 ?atc_code_1 .}
+    OPTIONAL{?cmpnd wdt:P2017 ?ismiles_1 .}
+    OPTIONAL{?cmpnd wdt:P2153 ?pubchem_sid_1 .}
+
+    OPTIONAL{?cmpnd wdt:P2054 ?density_1 .}
+    OPTIONAL{?cmpnd wdt:P1117 ?pka_1 .}
+    OPTIONAL{?cmpnd wdt:P227 ?gnd_id_1 .}
+    OPTIONAL{?cmpnd wdt:P589 ?point_group_1 .}
+    OPTIONAL{?cmpnd wdt:P556 ?crystal_system_1 .}
+    OPTIONAL{?cmpnd wdt:P2075 ?speed_of_sound_1 .}
+    OPTIONAL{?cmpnd wdt:P2102 ?boiling_point_1 .}
+    OPTIONAL{?cmpnd wdt:P2260 ?ionization_energy_1 .}
+    OPTIONAL{?cmpnd wdt:P2202 ?lower_flammable_limit_1 .}
+    OPTIONAL{?cmpnd wdt:P2128 ?flash_point_1 .}
+    OPTIONAL{?cmpnd wdt:P2203 ?upper_flammable_limit_1 .}
+    OPTIONAL{?cmpnd wdt:P349 ?ndl_id_1 .}
+    OPTIONAL{?cmpnd wdt:P232 ?einecs_number_1 .}
+    OPTIONAL{?cmpnd wdt:P244 ?lcauth_id_1 .}
+    OPTIONAL{?cmpnd wdt:P628 ?e_number_1 .}
+    OPTIONAL{?cmpnd wdt:P695 ?un_number_1 .}
+    OPTIONAL{?cmpnd wdt:P690 ?space_group_1 .}
+    OPTIONAL{?cmpnd wdt:P700 ?kemler_code_1 .}
+    OPTIONAL{?cmpnd wdt:P728 ?ghs_hazard_statement_1 .}
+    OPTIONAL{?cmpnd wdt:P874 ?un_class_1 .}
+    OPTIONAL{?cmpnd wdt:P876 ?un_packaging_group_1 .}
+    OPTIONAL{?cmpnd wdt:P1931 ?niosh_pocket_guide_id_1 .}
+    OPTIONAL{?cmpnd wdt:P995 ?nfpa_reactivity_1 .}
+    OPTIONAL{?cmpnd wdt:P940 ?ghs_precautionary_statements_1 .}
+    OPTIONAL{?cmpnd wdt:P993 ?nfpa_health_1 .}
+    OPTIONAL{?cmpnd wdt:P94	?nfpa_fire_1 .}
+    OPTIONAL{?cmpnd wdt:P2057 ?hmdb_id_1 .}
+    OPTIONAL{?cmpnd wdt:P2084 ?zinc_id_1 .}
+    OPTIONAL{?cmpnd wdt:P2062 ?hsdb_id_1 .}
+    OPTIONAL{?cmpnd wdt:P2796 ?3dmet_id_1 .}
+    OPTIONAL{?cmpnd wdt:P3013 ?surface_tension_1 .}
+    OPTIONAL{?cmpnd wdt:P2993 ?part_coeff_water_oct_1 .}
+  	OPTIONAL{?cmpnd wdt:P3078 ?standard_enthalpy_of_formation_1 .}
+  	OPTIONAL{?cmpnd wdt:P3071 ?standard_molar_entropy_1 .}
+  	OPTIONAL{?cmpnd wdt:P3070 ?dynamic_viscosity_1 .} 
+  	OPTIONAL{?cmpnd wdt:P2118  ?kinematic_viscosity_1 .}
+}
+GROUP BY ?cmpnd
+```
