@@ -81,3 +81,17 @@ SELECT * WHERE {
     }
 }
 ```
+
+##### Get all human gene Wikidata items with HGNC symbol but without HGNC gene ID
+This suggests that the gene does not have a real HGNC symbol, but the one on the human gene item is actually wrong
+[Execute](http://tinyurl.com/zdrtyd6)
+
+```sparql
+SELECT * WHERE {
+	{?x wdt:P353 ?gs .} MINUS
+	{?x wdt:P354 ?hgnc_id .}
+  
+  	{?x wdt:P703 wd:Q5 .} MINUS  
+  	{?x wdt:P703 wd:Q83310 .} 
+}
+```
