@@ -73,3 +73,13 @@ SELECT ?disease ?diseaseLabel WHERE {
     }  
 }
 ```
+
+#### Get all items with a UNII but without a NDF-RT NUI
+[Execute](http://tinyurl.com/jtgesp8)
+
+```sparql
+SELECT * WHERE {
+  {?x wdt:P652 ?unii .} MINUS 
+  {?x wdt:P2115 ?nui .}
+}
+```
