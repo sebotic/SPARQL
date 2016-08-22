@@ -83,3 +83,18 @@ SELECT * WHERE {
   {?x wdt:P2115 ?nui .}
 }
 ```
+
+#### Get all monoclonal antibody items in Wikidata
+[Execute](http://tinyurl.com/zf95wl7)
+
+```sparql
+SELECT ?mab ?mabLabel WHERE {
+	{?mab wdt:P279 wd:Q422248 .} UNION
+  	{?mab wdt:P31 wd:Q422248 .}
+
+	SERVICE wikibase:label {
+    	bd:serviceParam wikibase:language "en" .
+    	bd:serviceParam wikibase:language "de" .
+	}
+}
+```
