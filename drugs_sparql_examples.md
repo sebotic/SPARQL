@@ -84,7 +84,7 @@ SELECT * WHERE {
 }
 ```
 
-#### Get all monoclonal antibody items in Wikidata
+#### Get all FDA approved monoclonal antibody items in Wikidata
 [Execute](http://tinyurl.com/zf95wl7)
 
 ```sparql
@@ -97,4 +97,23 @@ SELECT ?mab ?mabLabel WHERE {
     	bd:serviceParam wikibase:language "de" .
 	}
 }
+```
+
+#### Get all monoclonal antibody items in Wikidata
+This query is based on the assumption that all items of [instance of](http://www.wikidata.org/entity/P31) [chemical compound](http://www.wikidata.org/entity/Q11173) or [monoclonal antibody](http://www.wikidata.org/entity/Q12140) who's label ends with 'mab' is a monoclonal antibody.
+[Execute](http://tinyurl.com/jy6ynxp)
+
+```sparql
+SELECT DISTINCT ?ab ?abLabel where {
+	{?ab wdt:P31 wd:Q12140 .} UNION
+  	{?ab wdt:P31 wd:Q11173 . }
+    ?ab rdfs:label ?abLabel filter (lang(?abLabel) = "en" || lang(?abLabel) = "de") .	
+  	    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+        bd:serviceParam wikibase:language "de" .
+    }
+  
+  FILTER (STRENDS(?abLabel, 'mab'))
+}
+GROUP BY ?ab ?abLabel
 ```
