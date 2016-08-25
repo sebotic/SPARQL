@@ -154,3 +154,17 @@ SELECT ?p ?up ?molecular_function ?cellular_component ?biological_process WHERE 
 }
 ORDER BY ?p
 ```
+
+#### Get all Gene Ontology IDs used for annotation of all human protein annotations item in Wikidata
+[Execute]()
+
+```sparql
+SELECT * WHERE {
+   ?p wdt:P279 wd:Q8054 .
+   ?p wdt:P703 wd:Q5 .
+
+  {?p wdt:P680 [wdt:P686 ?go] .} UNION
+  {?p wdt:P681 [wdt:P686 ?go] .} UNION
+  {?p wdt:P682 [wdt:P686 ?go] .}
+}
+```
