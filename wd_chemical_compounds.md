@@ -362,3 +362,40 @@ WHERE {
 }
 GROUP BY ?cmpnd
 ```
+
+#### Get all chemcial compound Wikidata items and a set of basic identifiers and the links to English Wikipedia
+[Execute](http://tinyurl.com/zk492ly)
+
+```sparql
+SELECT DISTINCT * WHERE {
+    {?cmpnd wdt:P279 wd:Q11173 .} UNION
+    {?cmpnd wdt:P31 wd:Q11173 .} UNION
+    {?cmpnd wdt:P662 [] .} UNION
+    {?cmpnd wdt:P231 [] .} UNION
+   	{?cmpnd wdt:P235 [] .}
+     
+    ?article schema:about ?cmpnd .
+    ?article schema:inLanguage "en" .
+    FILTER (SUBSTR(str(?article), 1, 25) = "https://en.wikipedia.org/") 
+  
+    OPTIONAL{?cmpnd wdt:P2067 ?mass.} 
+    OPTIONAL{?cmpnd wdt:P661 ?chemSpider .} 
+    OPTIONAL{?cmpnd wdt:P662 ?pubchem_cid .} 
+    OPTIONAL{?cmpnd wdt:P652 ?unii .} 
+    OPTIONAL{?cmpnd wdt:P486 ?mesh_id .} 
+    OPTIONAL{?cmpnd wdt:P665 ?kegg_id .}  
+    OPTIONAL{?cmpnd wdt:P683 ?chebi .} 
+    OPTIONAL{?cmpnd wdt:P715 ?drugbank .} 
+    OPTIONAL{?cmpnd wdt:P2275 ?who_inn .} 
+    OPTIONAL{?cmpnd wdt:P592 ?chembl .}
+    OPTIONAL{?cmpnd wdt:P595 ?iuphar .}
+    OPTIONAL{?cmpnd wdt:P231 ?cas .}
+    OPTIONAL{?cmpnd wdt:P233 ?csmiles .}
+    OPTIONAL{?cmpnd wdt:P234 ?inchi .}
+    OPTIONAL{?cmpnd wdt:P235 ?inchi_key .}
+    OPTIONAL{?cmpnd wdt:P274 ?chemical_formula .}
+    OPTIONAL{?cmpnd wdt:P267 ?atc_code .}
+    OPTIONAL{?cmpnd wdt:P2017 ?ismiles .}
+}
+ORDER BY ?cmpnd
+```
