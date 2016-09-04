@@ -399,3 +399,12 @@ SELECT DISTINCT * WHERE {
 }
 ORDER BY ?cmpnd
 ```
+
+##### Get all Wikidata items with a novalue PubChem ID:
+[Execute](http://tinyurl.com/jlbz8wu)
+```sparql
+SELECT * WHERE {
+	?c p:P662 ?cid .
+	?cid rdf:type <http://www.wikidata.org/prop/novalue/P662>
+}
+```
