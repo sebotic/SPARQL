@@ -408,3 +408,32 @@ SELECT * WHERE {
 	?cid rdf:type <http://www.wikidata.org/prop/novalue/P662>
 }
 ```
+
+#### Maintenance queries:
+##### Get all compounds with canoncial SMILES but without InChI key
+[Execute](http://tinyurl.com/zomqfp9)
+
+
+```sparql
+SELECT * WHERE {
+	{?cmpnd wdt:P233 ?csmiles .} MINUS
+  	{?cmpnd wdt:P235 ?ikey .} 
+    
+  OPTIONAL{
+  	?cmpnd wdt:P662 ?cid .
+  }
+}
+```
+##### Get all databases in Wikidata
+[Execute](http://tinyurl.com/zqpapv4)
+```sparql
+SELECT DISTINCT ?db ?wd_prop WHERE {
+	{?db wdt:P31 wd:Q2881060 . } UNION  # chemical database
+    {?db wdt:P31 wd:Q4117139 } UNION    # biological database
+  	{?db wdt:P31 wd:Q8513}				# database (general)
+  	
+  	OPTIONAL {
+      ?db wdt:P1687 ?wd_prop .
+    }
+}
+```
