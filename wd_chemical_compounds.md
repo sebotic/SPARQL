@@ -437,3 +437,25 @@ SELECT DISTINCT ?db ?wd_prop WHERE {
     }
 }
 ```
+
+##### Get a certain subset of chemical identifiers
+[Execute](http://tinyurl.com/hgzb5x8)
+```sparql
+SELECT ?cmpnd ?cid
+    (GROUP_CONCAT(DISTINCT(?ikey); separator="|") as ?ikey)
+	(GROUP_CONCAT(DISTINCT(?csid_1); separator="|") as ?csi)
+	(GROUP_CONCAT(DISTINCT(?chembl_1); separator="|") as ?chembl)
+	(GROUP_CONCAT(DISTINCT(?unii); separator="|") as ?unii)
+WHERE {
+    ?cmpnd wdt:P662 ?cid .
+    OPTIONAL { ?cmpnd wdt:P235 ?ikey . }
+  	OPTIONAL { ?cmpnd wdt:P661 ?csid_1 . } # chemspider
+  	OPTIONAL { ?cmpnd wdt:P592 ?chembl_1 . } # chembl
+  	OPTIONAL { ?cmpnd wdt:P652 ?unii . } # unii
+  
+}
+GROUP BY ?cmpnd ?cid
+
+OFFSET 0
+LIMIT 5000
+```
