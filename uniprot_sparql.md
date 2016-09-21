@@ -75,7 +75,7 @@ SELECT ?gene ?geneLabel ?wdncbi ?start ?stop ?disease_text WHERE {
     SERVICE <https://query.wikidata.org/sparql> {    
 
         ?gene wdt:P351 ?wdncbi ;
-              wdt:P703 wd:Q5;
+              wdt:P703 wd:Q15978631;
               rdfs:label ?geneLabel ;
               p:P644 ?geneLocStart ;
               p:P645 ?geneLocStop ;
