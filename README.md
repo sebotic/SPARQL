@@ -153,7 +153,7 @@ PREFIX schema: <http://schema.org/>
 
 SELECT ?gene ?revision WHERE {
 	?gene wdt:P351 ?entrez . 
-  	?gene wdt:P703 wd:Q5 .
+  	?gene wdt:P703 wd:Q15978631 .
     ?gene schema:version ?revision . 
 }
 ```
@@ -195,7 +195,7 @@ ORDER BY ?geneLabel
 ```sparql
 SELECT DISTINCT ?subc ?subcLabel (COUNT(?subc) as ?count) WHERE {
     ?g wdt:P351 ?entrez .
-    ?g wdt:P703 wd:Q5 .
+    ?g wdt:P703 wd:Q15978631 .
   
     ?g wdt:P279 ?subc .
   
