@@ -159,7 +159,7 @@ SELECT ?gene ?revision WHERE {
 ```
 <br/>
 ##### Get all human genes on chromosome 9 with a start position between 21 MB and 30 MB.
-[Execute](http://tinyurl.com/zgyqsmk)
+[Execute](http://tinyurl.com/ju3t433) <br>
 This query can be potentially useful for e.g. quick annotation of copy number abberations.
 
 ```sparql
@@ -170,9 +170,12 @@ PREFIX p: <http://www.wikidata.org/prop/>
 PREFIX q: <http://www.wikidata.org/prop/qualifier/>
 PREFIX v: <http://www.wikidata.org/prop/statement/>
 
-SELECT distinct ?gene ?geneLabel ?start ?stop WHERE {
+SELECT distinct ?gene ?geneLabel ?start ?stop ?strand_orientation WHERE {
   ?gene wdt:P1057 wd:Q840604 .
   ?gene p:P644 ?statement .
+  ?gene wdt:P703 wd:Q15978631 .
+  ?gene wdt:P2548 ?strand_orientation .
+  
   ?statement v:P644 ?start .
   ?statement q:P659 wd:Q20966585 . 
   
@@ -184,7 +187,7 @@ SELECT distinct ?gene ?geneLabel ?start ?stop WHERE {
         bd:serviceParam wikibase:language "en" .
   }
   
-  FILTER (xsd:integer(?start) > 21000000 && xsd:integer(?start) < 30000000)
+  FILTER (IF(?strand_orientation = wd:Q22809680, xsd:integer(?start) > 21000000 && xsd:integer(?stop) < 30000000, xsd:integer(?stop) > 21000000 && xsd:integer(?start) < 30000000))
 }
 ORDER BY ?geneLabel
 ```
