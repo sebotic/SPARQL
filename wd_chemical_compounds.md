@@ -459,3 +459,17 @@ GROUP BY ?cmpnd ?cid
 OFFSET 0
 LIMIT 5000
 ```
+
+##### Filter for certain strings in labels
+[Execute](http://tinyurl.com/gwhj6yx)
+```sparql
+SELECT ?c ?cLabel ?chebi WHERE {
+	?c wdt:P683 ?chebi .
+  	
+  	SERVICE wikibase:label {
+    	bd:serviceParam wikibase:language "en" . 
+  }    
+}
+GROUP BY ?c ?cLabel ?chebi
+HAVING (contains(?cLabel, "->"))
+```
