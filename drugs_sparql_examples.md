@@ -129,3 +129,15 @@ SELECT ?ab ?abLabel ?cas ?gtp ?chembl WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
 ```
+#### Get all monoclonal antibodies which could be used for treatment of melanoma
+[Execute](http://tinyurl.com/z5xkv98)
+```sparql
+SELECT ?ab ?abLabel ?cas ?gtp ?chembl WHERE {
+  ?ab wdt:P31 wd:Q422248.
+  ?ab wdt:P2175 wd:Q180614 .
+  OPTIONAL { ?ab wdt:P231 ?cas. }
+  OPTIONAL { ?ab wdt:P595 ?gtp. }
+  OPTIONAL { ?ab wdt:P592 ?chembl. }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+```
