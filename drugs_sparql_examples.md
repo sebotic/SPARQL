@@ -141,3 +141,24 @@ SELECT ?ab ?abLabel ?cas ?gtp ?chembl WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
 ```
+
+#### Get all monoclonal antibodies which might treat melanoma, include references where knowledge has been imported from
+[Execute](http://tinyurl.com/jollvbs)
+```sparql
+SELECT ?drugLabel ?drug ?ref_id ?ref_db ?ref_dbLabel ?ref_date WHERE {
+  ?drug wdt:P2175 wd:Q180614 ;
+  		wdt:P31 wd:Q422248 . 
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+    }
+  
+   OPTIONAL {
+     ?drug p:P2175 ?s2 .
+     ?s2 prov:wasDerivedFrom ?v .
+     ?v <http://www.wikidata.org/prop/reference/P592>|<http://www.wikidata.org/prop/reference/P2115> ?ref_id .
+     ?v <http://www.wikidata.org/prop/reference/P248> ?ref_db .
+     ?v <http://www.wikidata.org/prop/reference/P813> ?ref_date .
+  }
+}
+group by ?drug ?drugLabel ?ref_id ?ref_db ?ref_dbLabel ?ref_date
+```
