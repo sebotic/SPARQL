@@ -117,3 +117,15 @@ SELECT DISTINCT ?ab ?abLabel where {
 }
 GROUP BY ?ab ?abLabel
 ```
+#### Get all monoclonal antibodies with revevant external IDs, based on categorization with 'instance of' [monoclonal antibody](http://www.wikidata.org/entity/Q12140)
+[Execute](http://tinyurl.com/hmfbvo3)
+
+```sparql
+SELECT ?ab ?abLabel ?cas ?gtp ?chembl WHERE {
+  ?ab wdt:P31 wd:Q422248.
+  OPTIONAL { ?ab wdt:P231 ?cas. }
+  OPTIONAL { ?ab wdt:P595 ?gtp. }
+  OPTIONAL { ?ab wdt:P592 ?chembl. }
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+```
