@@ -130,7 +130,7 @@ SELECT ?ab ?abLabel ?cas ?gtp ?chembl WHERE {
 }
 ```
 #### Get all monoclonal antibodies which could be used for treatment of melanoma
-[Execute](http://tinyurl.com/z5xkv98)
+[Execute](http://tinyurl.com/zn9zvg8)
 ```sparql
 SELECT ?ab ?abLabel ?cas ?gtp ?chembl WHERE {
   ?ab wdt:P31 wd:Q422248.
