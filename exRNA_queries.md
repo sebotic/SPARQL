@@ -4,7 +4,7 @@
 [Execute](http://tinyurl.com/zdn4gpo)
 ```sparql
 SELECT ?mirna ?mirnaLabel WHERE {
-  ?mirna wdt:P279 wd:Q310899 .
+  ?mirna wdt:P31 wd:Q310899 .
   SERVICE wikibase:label {
     bd:serviceParam wikibase:language "en" .
   }
@@ -14,7 +14,19 @@ SELECT ?mirna ?mirnaLabel WHERE {
 [Execute](http://tinyurl.com/h5ct7qr)
 ```sparql
 SELECT ?mirna ?mirnaLabel WHERE {
-  ?mirna wdt:P279 wd:Q23838648.
+  ?mirna wdt:P31 wd:Q23838648.
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+```
+
+#### Also include the miRNA IDs in the result set
+[Execute](http://tinyurl.com/hj8u5tf)
+```sparql
+SELECT ?mirna ?mirna_id ?mirnaLabel WHERE {
+  ?mirna wdt:P31 wd:Q310899 .
+  ?mirna wdt:P2870 ?mirna_id .
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "en" .
+  }
 }
 ```
