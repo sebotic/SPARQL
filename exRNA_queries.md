@@ -30,3 +30,15 @@ SELECT ?mirna ?mirna_id ?mirnaLabel WHERE {
   }
 }
 ```
+####  Retrieve all mature miRNAs and their targets (names and NCBI entrez gene ID)
+[Execute](http://tinyurl.com/jry2u84)
+
+```sparql
+SELECT DISTINCT ?mirna ?mirnaLabel ?gene ?geneLabel ?entrez WHERE {
+  ?mirna wdt:P31 wd:Q23838648 ;
+         wdt:P128 ?gene .
+  ?gene wdt:P351 ?entrez .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+```
