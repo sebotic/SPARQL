@@ -1,7 +1,7 @@
 ## Set of queries to retrieve data on extracellular RNAs from [Wikidata](https://www.wikidata.org) and to integrate them with data from [Wikipathways](www.wikipathways.org).
 
 #### Get all pre-miRNAs in Wikidata
-[Execute](http://tinyurl.com/zdn4gpo)
+[Execute](http://tinyurl.com/h4t5dxn)
 ```sparql
 SELECT ?mirna ?mirnaLabel WHERE {
   ?mirna wdt:P31 wd:Q310899 .
