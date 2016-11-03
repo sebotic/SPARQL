@@ -66,3 +66,26 @@ SELECT DISTINCT ?gene ?geneLabel ?mir ?mirLabel ?drug ?drugLabel WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}  
 }
 ```
+#### Genes regulated by hsa-miR-211-5p
+[Execute](http://tinyurl.com/hmnl9la)
+```sparql
+SELECT ?gene ?geneLabel WHERE {
+	?mirna rdfs:label 'hsa-miR-211-5p'@en .
+    ?mirna wdt:P128 ?gene .
+  
+  	SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}
+}
+```
+##### Biological processes impacted by hsa-miR-211-5p
+[Execute](http://tinyurl.com/gnv2nj9)
+
+```sparql
+SELECT DISTINCT ?bioProcess ?bioProcessLabel WHERE {
+	?mirna rdfs:label 'hsa-miR-211-5p'@en .
+    ?mirna wdt:P128 ?gene .
+    ?gene wdt:P688 ?protein .
+    ?protein wdt:P682 ?bioProcess .
+  
+  	SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}
+}
+```
