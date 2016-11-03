@@ -89,3 +89,21 @@ SELECT DISTINCT ?bioProcess ?bioProcessLabel WHERE {
   	SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}
 }
 ```
+##### Retrieve Wikipathways pathways
+```sparql
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+
+SELECT ?mirna ?gene ?pathway ?pLabel WHERE {
+  ?target dc:identifier ?exact .
+    ?target dcterms:isPartOf ?pathway .
+    ?pathway a wp:Pathway .
+    ?pathway <http://purl.org/dc/elements/1.1/title> ?pLabel .
+  SERVICE <https://query.wikidata.org/sparql> {
+    ?mirna rdfs:label 'hsa-miR-211-5p'@en .
+    ?mirna wdt:P128 ?gene .
+    ?gene wdt:P2888 ?exact filter (?exact = <http://identifiers.org/ncbigene/1234>)
+  }
+
+} LIMIT 10
+
+```
