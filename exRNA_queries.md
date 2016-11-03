@@ -42,3 +42,27 @@ SELECT DISTINCT ?mirna ?mirnaLabel ?gene ?geneLabel ?entrez WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
 ```
+#### Retrieve all genes and mature miRNAs which are involved in the 'regulation of immune response' (GO:0050776)
+[Execute](http://tinyurl.com/zwgpb9c)
+
+```sparql
+SELECT DISTINCT ?gene ?geneLabel ?mir ?mirLabel WHERE {
+  ?protein wdt:P682 [wdt:P686 'GO:0050776'] . # regulation of immune response
+  ?protein wdt:P702 ?gene .
+  
+  ?mir wdt:P128 ?gene .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}
+}
+```
+#### For these genes involved in regulation of immune reponse, are there drug which modulate the immune response, by targeting one of these gene?
+[Execute](http://tinyurl.com/j79gvfq)
+```sparql
+SELECT DISTINCT ?gene ?geneLabel ?mir ?mirLabel ?drug ?drugLabel WHERE {
+  ?x wdt:P682 [wdt:P686 'GO:0050776'] . # regulation of immune response
+  ?x wdt:P702 ?gene .
+  ?x wdt:P129 ?drug .
+  
+  ?mir wdt:P128 ?gene .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}  
+}
+```
