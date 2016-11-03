@@ -11,7 +11,7 @@ SELECT ?mirna ?mirnaLabel WHERE {
 }
 ```
 #### Get all mature miRNAs in Wikidata
-[Execute](http://tinyurl.com/h5ct7qr)
+[Execute](http://tinyurl.com/jrt3bao)
 ```sparql
 SELECT ?mirna ?mirnaLabel WHERE {
   ?mirna wdt:P31 wd:Q23838648.
