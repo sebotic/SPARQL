@@ -103,6 +103,22 @@ SELECT DISTINCT ?geneLabel ?goLabel ?mirLabel WHERE {
 GROUP BY ?goLabel ?mirLabel ?geneLabel
 HAVING(?mirLabel = 'hsa-miR-211-5p'@en)
 ```
+#### Same query as the previous, but also retrieving small molecules interacting with these gene products.
+[Execute](http://tinyurl.com/zpxdn57)
+```sparql
+SELECT DISTINCT ?gene ?geneLabel ?mir ?mirLabel ?drug ?drugLabel WHERE {
+  ?x wdt:P279* [wdt:P686 'GO:0006955'] . # regulation of immune response
+  ?p ?pr ?x .
+  ?p wdt:P702 ?gene .
+  OPTIONAL { ?p wdt:P129 ?drug . }
+  
+  ?mir wdt:P128 ?gene . 
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}
+}
+GROUP BY ?gene ?mir ?mirLabel ?geneLabel ?drug ?drugLabel
+HAVING(?mirLabel = 'hsa-miR-211-5p'@en)
+```
 
 ##### Retrieve Wikipathways pathways
 ```sparql
