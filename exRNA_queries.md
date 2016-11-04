@@ -89,6 +89,21 @@ SELECT DISTINCT ?bioProcess ?bioProcessLabel WHERE {
   	SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}
 }
 ```
+#### Retrieve all human genes which are involved in all bio-processes which are subclass of immune response as annotated by GO, also retrieve the miRNAs which can regulate these genes.
+[Execute](http://tinyurl.com/zbxzlvo)
+```sparql
+SELECT DISTINCT ?geneLabel ?goLabel ?mirLabel WHERE {
+  ?go wdt:P279* [wdt:P686 'GO:0006955'] . # immune response
+  ?p ?pr ?go .
+  ?p wdt:P702 ?gene .
+  
+  ?mir wdt:P128 ?gene .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}  
+}
+GROUP BY ?goLabel ?mirLabel ?geneLabel
+HAVING(?mirLabel = 'hsa-miR-211-5p'@en)
+```
+
 ##### Retrieve Wikipathways pathways
 ```sparql
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
