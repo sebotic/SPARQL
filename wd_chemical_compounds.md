@@ -207,7 +207,8 @@ SELECT * WHERE {
   	OPTIONAL{?cmpnd wdt:P3078 ?standard_enthalpy_of_formation .}
   	OPTIONAL{?cmpnd wdt:P3071 ?standard_molar_entropy .}
   	OPTIONAL{?cmpnd wdt:P3070 ?dynamic_viscosity .} 
-  	OPTIONAL{?cmpnd wdt:P2118 ?kinematic_viscosity .}
+  	OPTIONAL{?cmpnd wdt:P2118 ?kinematic_viscosity .} 
+	OPTIONAL{?cmpnd wdt:P1108 ?electronegativity .}
 }
 ORDER BY ?cmpnd
 ```
