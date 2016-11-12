@@ -162,3 +162,21 @@ SELECT ?drugLabel ?drug ?ref_id ?ref_db ?ref_dbLabel ?ref_date WHERE {
 }
 group by ?drug ?drugLabel ?ref_id ?ref_db ?ref_dbLabel ?ref_date
 ```
+#### Get all drugs that can be used for treatment of [asthma](http://www.wikidata.org/entity/Q35869), then get the protein targets and other drugs these targets could be modified by. Also return the type of interaction.
+[Execute](http://tinyurl.com/jna6n46)
+
+```sparql
+PREFIX q: <http://www.wikidata.org/prop/qualifier/>
+
+SELECT DISTINCT ?drug ?drugLabel  ?protein ?proteinLabel ?drug2 ?drug2Label ?v ?vLabel WHERE {
+	wd:Q35869 wdt:P2176 ?drug .
+    ?drug wdt:P2175 ?condition .
+    ?drug wdt:P129 ?protein .
+  	?protein wdt:P129 ?drug2 .
+    ?drug2 p:P129 ?s .
+  	OPTIONAL {
+    	?s q:P794 ?v . # P794 'as' qualifier property
+	}
+  	SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }  
+}
+```
