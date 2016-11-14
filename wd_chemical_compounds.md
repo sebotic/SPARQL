@@ -474,3 +474,15 @@ SELECT ?c ?cLabel ?chebi WHERE {
 GROUP BY ?c ?cLabel ?chebi
 HAVING (contains(?cLabel, "->"))
 ```
+
+##### Get chemical compounds which have a PDB ID and also return their protein 'targets', based on equal PDB IDs.
+[Execute](http://tinyurl.com/zj78lvj)
+```sparql
+SELECT * WHERE { 
+  ?c wdt:P638 ?pdb. 
+  ?c wdt:P31 wd:Q11173 . 
+  ?x wdt:P638 ?pdb .
+  ?x wdt:P279 wd:Q8054 .
+  FILTER (?c != ?x)
+}
+```
