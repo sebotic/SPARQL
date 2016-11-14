@@ -138,3 +138,16 @@ SELECT ?mirna ?gene ?pathway ?pLabel WHERE {
 } LIMIT 10
 
 ```
+
+##### Retrieve miRNAs involved in regulation of genes involved in postitive regulation of type 2 immune response (as annotated by Gene Ontology)
+[Execute](http://tinyurl.com/jzhe2ba)
+
+```sparql
+SELECT DISTINCT ?gene ?geneLabel ?mir ?mirLabel WHERE {
+  ?protein wdt:P682 wd:Q14907411 . # regulation of immune response
+  ?protein wdt:P702 ?gene .
+  
+  ?mir wdt:P128 ?gene .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}  
+}
+```
