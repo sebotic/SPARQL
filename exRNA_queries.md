@@ -166,4 +166,15 @@ SELECT DISTINCT ?gene ?geneLabel ?mir ?mirLabel ?drug ?drugLabel WHERE {
 }
 ```
 
-#####
+##### Get all miRNAs and their target genes and NCBI Entrez gene IDs, limit at 10,000, otherwise query expires.
+[Execute](http://tinyurl.com/hcefcab)
+```sparql
+SELECT DISTINCT ?mirna ?mirnaLabel ?gene ?geneLabel ?entrez WHERE {
+  ?mirna wdt:P31 wd:Q23838648 ;
+         wdt:P128 ?gene .
+  ?gene wdt:P351 ?entrez .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+LIMIT 10000
+```
