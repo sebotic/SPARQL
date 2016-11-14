@@ -151,3 +151,19 @@ SELECT DISTINCT ?gene ?geneLabel ?mir ?mirLabel WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}  
 }
 ```
+
+##### Return all genes involved in T cell receptor signalling, also return the miRNAs implicated in regulating these genes, and also small molecules which might regulate these genes/gene products.
+[Execute](http://tinyurl.com/hwg3p7n)
+
+```sparql
+SELECT DISTINCT ?gene ?geneLabel ?mir ?mirLabel ?drug ?drugLabel WHERE {
+  ?x wdt:P682 wd:Q14863970 .
+  ?x wdt:P702 ?gene .
+  ?x wdt:P129 ?drug .
+  
+  ?mir wdt:P128 ?gene .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}  
+}
+```
+
+#####
