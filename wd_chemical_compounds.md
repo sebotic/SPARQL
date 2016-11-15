@@ -209,6 +209,7 @@ SELECT * WHERE {
   	OPTIONAL{?cmpnd wdt:P3070 ?dynamic_viscosity .} 
   	OPTIONAL{?cmpnd wdt:P2118 ?kinematic_viscosity .} 
 	OPTIONAL{?cmpnd wdt:P1108 ?electronegativity .}
+	OPTIONAL{?cmpnd wdt:P2240 ?median_lethal_dose .}
 }
 ORDER BY ?cmpnd
 ```
