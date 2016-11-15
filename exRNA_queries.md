@@ -178,3 +178,36 @@ SELECT DISTINCT ?mirna ?mirnaLabel ?gene ?geneLabel ?entrez WHERE {
 }
 LIMIT 10000
 ```
+##### Retrieve the human gene which encodes for a miRNA, based on genomic coordinates:
+[Execute](http://tinyurl.com/zj675nd)
+
+```sparql
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX wd: <http://www.wikidata.org/entity/> 
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX q: <http://www.wikidata.org/prop/qualifier/>
+PREFIX v: <http://www.wikidata.org/prop/statement/>
+
+SELECT DISTINCT ?gene ?geneLabel ?start ?stop ?strand_orientation WHERE {
+  ?gene wdt:P1057 wd:Q840741 .
+  ?gene p:P644 ?statement .
+  ?gene wdt:P703 wd:Q15978631 .
+  ?gene wdt:P2548 ?strand_orientation .
+  
+  ?statement v:P644 ?start .
+  ?statement q:P659 wd:Q20966585 . 
+  
+  ?gene p:P645 ?statement2 .
+  ?statement2 v:P645 ?stop .
+  ?statement2 q:P659 wd:Q20966585 . 
+  
+  SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+  }
+  
+  #FILTER (IF(?strand_orientation = wd:Q22809680, xsd:integer(?start) > 169263601 && xsd:integer(?stop) < 169263694, xsd:integer(?stop) > 169263601 && xsd:integer(?start) < 169263694))
+  FILTER (xsd:integer(?start) >= 12029158 && xsd:integer(?stop) <= 12029222)
+}
+ORDER BY ?geneLabel
+```
