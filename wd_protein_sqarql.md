@@ -168,7 +168,8 @@ SELECT * WHERE {
   {?p wdt:P682 [wdt:P686 ?go] .}
 }
 ```
- #### Get all protein which [bind p53](https://www.wikidata.org/wiki/Q14817974) (as annotated by Gene Ontology) and the chemical compounds which can inhibit/modulate those proteins
+#### Get all protein which [bind p53](https://www.wikidata.org/wiki/Q14817974) (as annotated by Gene Ontology) and the chemical compounds which can inhibit/modulate those proteins.
+
 [Execute](http://tinyurl.com/zdfmot2)
 
 ```sparql
