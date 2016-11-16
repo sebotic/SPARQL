@@ -168,3 +168,14 @@ SELECT * WHERE {
   {?p wdt:P682 [wdt:P686 ?go] .}
 }
 ```
+ #### Get all protein which [bind p53](https://www.wikidata.org/wiki/Q14817974) (as annotated by Gene Ontology) and the chemical compounds which can inhibit/modulate those proteins
+[Execute](http://tinyurl.com/zdfmot2)
+
+```sparql
+SELECT ?p ?pLabel ?chem_compound ?chem_compoundLabel WHERE {
+	?p wdt:P680 wd:Q14817974 .
+  	OPTIONAL { ?p wdt:P129 ?chem_compound . }
+    
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . } 
+}
+```
