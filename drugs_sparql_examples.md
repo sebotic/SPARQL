@@ -180,3 +180,13 @@ SELECT DISTINCT ?drug ?drugLabel  ?protein ?proteinLabel ?drug2 ?drug2Label ?v ?
   	SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }  
 }
 ```
+#### Get chemical compounds with an indication having a ChEMBL ID but lacking NDF-RT ID
+[Execute](http://tinyurl.com/zckvb2p)
+
+```
+SELECT * WHERE {
+  ?drug wdt:P2175 ?d.
+  {?drug wdt:P592 ?chembl.} #minus
+  {?drug wdt:P2115 ?ndfrt}
+}
+```
