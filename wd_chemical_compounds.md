@@ -61,6 +61,38 @@ SELECT ?compound ?compoundLabel  ?iuphar_id WHERE {
 ORDER BY ?compoundLabel
 ```
 
+##### Above query slightly modified to return target proteins
+[Execute](http://tinyurl.com/juymuqn)
+```sparql
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+PREFIX p: <http://www.wikidata.org/prop/>
+PREFIX ps: <http://www.wikidata.org/prop/statement/>
+PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX r: <http://www.wikidata.org/prop/reference/>
+PREFIX bd: <http://www.bigdata.com/rdf#>
+
+SELECT DISTINCT ?compound ?compoundLabel  ?iuphar_id ?protein ?proteinLabel ?uniprot WHERE {
+    ?compound wdt:P31 wd:Q11173 .
+    ?compound wdt:P129 ?protein .
+  	?protein wdt:P352 ?uniprot . 
+  	?compound p:P129 ?stmnt .
+    
+    ?stmnt prov:wasDerivedFrom ?ref .
+    ?ref  r:P248 wd:Q2793172  .  
+    ?ref  r:P595 ?iuphar_id  .  
+  
+     SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+    }
+}
+ORDER BY ?compoundLabel
+
+```
+
 ##### Get all basic chemical identifiers for items with IUPHAR ID
 [execute](http://tinyurl.com/gsmryjz)
 
