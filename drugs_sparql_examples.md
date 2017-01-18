@@ -1,3 +1,15 @@
+#### Get approved drugs which also have indication information
+[Execute](http://tinyurl.com/ht8a49a)
+
+There is also a [legal status for drug approval](https://www.wikidata.org/entity/P3493) now, which allows to indicated the specific countries/agencies a drug has been approved by.
+
+```sparql
+SELECT DISTINCT ?drug ?disease_treated WHERE { 
+  ?drug wdt:P31 wd:Q12140. # pharmaceutical drug
+  ?drug wdt:P2175 ?disease_treated .
+}
+```
+
 #### A 4 step split query to get from a disease to a drug and the biochemical effects of the drug
 A few simple queries to show the power of Wikidata. Depending on the use case, the queries can just combined into one.
 
