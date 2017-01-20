@@ -180,6 +180,17 @@ SELECT ?p ?pLabel ?chem_compound ?chem_compoundLabel WHERE {
     SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . } 
 }
 ```
+#### Get all PDB IDs for human proteins
+[Execute](http://tinyurl.com/hkt7prq)
+
+```sparql
+SELECT * WHERE {
+  ?p wdt:P703 wd:Q15978631. 
+  ?p wdt:P352 ?uniprot .
+  ?p wdt:P638 ?pdb.
+}
+```
+
 #### Get all human proteins with have at least on PDB structure
 [Execute](http://tinyurl.com/grf6qo5)
 
