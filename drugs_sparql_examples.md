@@ -202,3 +202,21 @@ SELECT * WHERE {
   {?drug wdt:P2115 ?ndfrt}
 }
 ```
+
+#### Get all chemical compounds which have treatment info but lack a PDB ID (that suggests that no dedicated target of a compound is known)
+[Execute](http://tinyurl.com/ztbvuez)
+
+```sparql
+SELECT DISTINCT ?x ?xLabel ?condition ?conditionLabel WHERE {
+  {?x wdt:P2175 ?condition . } MINUS
+  
+  {
+  ?x wdt:P31 wd:Q11173.
+  ?x wdt:P638 ?pdb.
+  }
+  
+   SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "en" .
+  }
+}
+```
