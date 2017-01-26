@@ -250,3 +250,21 @@ SELECT *  WHERE {
 }
 LIMIT 100000
 ```
+##### Get all disease names in Wikidata
+[Execute](http://tinyurl.com/jdp4foj)
+```sparql
+SELECT ?disease ?label (GROUP_CONCAT(DISTINCT(?alias); separator="|") AS ?aliases) WHERE { 
+  {?disease wdt:P486 ?mesh .} UNION  # Mesh
+  {?disease wdt:P699 ?doid .} UNION  # DO
+  {?disease wdt:P494 wd:Q11173 .} MINUS  # ICD-10
+  {?disease wdt:P31 wd:Q11173 .} 
+  
+  OPTIONAL {
+    ?disease rdfs:label ?label FILTER (LANG(?label) = "en") .
+  }
+  OPTIONAL {
+  	?disease skos:altLabel ?alias FILTER (LANG(?alias) = "en") .
+  }
+}
+GROUP BY ?disease ?label ?aliases
+```
