@@ -519,3 +519,24 @@ SELECT * WHERE {
   FILTER (?c != ?x)
 }
 ```
+##### Get all names for all chemcial compounds in Wikidata
+[Execute](http://tinyurl.com/z4nmtwn)
+```sparql
+SELECT ?compound ?label ?who_name (GROUP_CONCAT(DISTINCT(?alias); separator="|") AS ?aliases) WHERE { 
+  	{?compound wdt:P31 wd:Q11173 .} UNION  # chemical compound
+  	{?compound wdt:P31 wd:Q12140 .} UNION  # pharmaceutical drug
+  	{?compound wdt:P31 wd:Q79529 .} UNION  # chemical substance
+	{?compound wdt:P2275 ?who_name FILTER (LANG(?who_name) = "en") .}
+  
+  OPTIONAL {
+    ?compound rdfs:label ?label FILTER (LANG(?label) = "en") .
+  }
+  OPTIONAL {
+  	?compound skos:altLabel ?alias FILTER (LANG(?alias) = "en") .
+  }
+}
+GROUP BY ?compound ?label ?who_name #?aliases
+OFFSET 100000
+LIMIT 100000
+```
+
