@@ -250,7 +250,7 @@ SELECT *  WHERE {
 }
 LIMIT 100000
 ```
-##### Get all disease names in Wikidata
+##### Get all disease names in Wikidata (Disease Ontology and MeSH)
 [Execute](http://tinyurl.com/jdp4foj)
 ```sparql
 SELECT ?disease ?label (GROUP_CONCAT(DISTINCT(?alias); separator="|") AS ?aliases) WHERE { 
@@ -267,4 +267,31 @@ SELECT ?disease ?label (GROUP_CONCAT(DISTINCT(?alias); separator="|") AS ?aliase
   }
 }
 GROUP BY ?disease ?label ?aliases
+```
+##### Get all items which are diseases/disease-like, even outside what's in above query
+[Execute](http://tinyurl.com/zguk7hb)
+
+```sparql
+select distinct ?q ?label ?article where {
+  {?q wdt:P279 wd:Q12136 .} UNION
+  {?q wdt:P279 wd:Q929833 .} UNION
+  {?q wdt:P31 wd:Q12136 .} UNION
+  {?q wdt:P31 wd:Q929833 .} UNION
+  {?q wdt:P557 ?diseaeDB .} UNION
+  {?q wdt:P493 ?icd9 .} UNION
+  {?q wdt:P494 ?icd10 .} UNION
+  {?q wdt:P1995 ?medspec .} Union
+  {?q p:P699/ps:P699 ?doid .}
+
+
+  OPTIONAL {
+    ?q rdfs:label ?label filter (lang(?label) = "en") .
+    #?article schema:about ?q .
+    #?article schema:inLanguage "en" .
+  }
+  #SERVICE wikibase:label {
+  #  bd:serviceParam wikibase:language "en" .
+  #}
+  #Filter not exists {?q wdt:P699 ?doid .}
+}
 ```
