@@ -95,3 +95,12 @@ SELECT * WHERE {
   	{?x wdt:P703 wd:Q83310 .} 
 }
 ```
+##### Get all mouse genes with MGI ID which is lacking the MGI prefix
+[Execute](http://tinyurl.com/jm737tx)
+
+```sparql
+SELECT * WHERE {
+	?mg wdt:P671 ?mgi .
+    FILTER(!regex( ?mgi, '^MGI:[0-9]', 'i'))
+}
+```
