@@ -104,3 +104,16 @@ SELECT * WHERE {
     FILTER(!regex( ?mgi, '^MGI:[0-9]', 'i'))
 }
 ```
+
+##### Get all MeSH IDs which start with an "M", also retrieve UNII
+[Execute](http://tinyurl.com/j9at6ht)
+```sparql
+SELECT ?x ?t ?xLabel ?unii WHERE {
+  ?x wdt:P486 ?t FILTER(STRSTARTS(?t, 'M')) .
+  
+  OPTIONAL {?x wdt:P652 ?unii .}
+     
+  SERVICE wikibase:label {bd:serviceParam wikibase:language "en" .}
+
+}
+```
