@@ -239,3 +239,21 @@ SELECT ?disease ?label (GROUP_CONCAT(DISTINCT(?alias); separator="|") AS ?aliase
 GROUP BY ?disease ?label ?aliases
 
 ```
+#### Get targets for ATC codes, and optionally, the indications
+[Execute](http://tinyurl.com/jcm9sja)
+```sparql
+SELECT ?atc ?d ?dLabel ?target ?targetLabel ?diseaseLabel WHERE {
+  ?d wdt:P267 ?atc.
+  
+  ?d wdt:P129 ?target .
+  
+  OPTIONAL {
+  	?d wdt:P2175 ?disease .
+  }
+
+  SERVICE wikibase:label {
+            bd:serviceParam wikibase:language "en" .
+    }  
+}
+ORDER BY ?atc 
+```
