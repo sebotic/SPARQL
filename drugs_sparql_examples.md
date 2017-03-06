@@ -257,3 +257,14 @@ SELECT ?atc ?d ?dLabel ?target ?targetLabel ?diseaseLabel WHERE {
 }
 ORDER BY ?atc 
 ```
+
+#### Get all UMLS to DO mappings in Wikidata
+[Execute](http://tinyurl.com/zz76fc3)
+
+```sparql
+SELECT DISTINCT * WHERE {
+	?d wdt:P31 wd:Q12136 .
+    ?d wdt:P2892 ?umls .
+}
+
+```
