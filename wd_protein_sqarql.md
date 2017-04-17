@@ -201,3 +201,19 @@ SELECT DISTINCT ?p WHERE {
   ?p wdt:P638 ?pdb.
 }
 ```
+#### Get all human proteins which have a cellular component annotation in GO
+[Execute](http://tinyurl.com/m25oj52)
+
+```sparql
+SELECT DISTINCT ?c ?cLabel ?component ?componentLabel WHERE {
+  ?c wdt:P279 wd:Q8054.
+  ?c wdt:P703 wd:Q15978631.
+  ?c wdt:P681 ?component .
+  
+  SERVICE wikibase:label {
+     		bd:serviceParam wikibase:language "en" .
+  	} 
+}
+
+ORDER BY ?c
+```
