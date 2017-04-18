@@ -544,7 +544,7 @@ LIMIT 100000
 This means that the chemical compound is a small molecule ligand of the PDB structure (and therefore also the protein). In some cases, the small molecule is acutally not a ligand but covalently bound.
 [Execute](http://tinyurl.com/l6bh8hv)
 
-````sparql
+```sparql
 SELECT distinct ?x ?y WHERE {
   ?x wdt:P703 wd:Q15978631.
   ?x wdt:P638 ?pdb.
