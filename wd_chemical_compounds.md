@@ -540,3 +540,15 @@ OFFSET 100000
 LIMIT 100000
 ```
 
+##### Get all human proteins which have a PDB ID and get all chemical compound which have the same PDB ID. 
+This means that the chemical compound is a small molecule ligand of the PDB structure (and therefore also the protein). In some cases, the small molecule is acutally not a ligand but covalently bound.
+[Execute](http://tinyurl.com/l6bh8hv)
+
+````sparql
+SELECT distinct ?x ?y WHERE {
+  ?x wdt:P703 wd:Q15978631.
+  ?x wdt:P638 ?pdb.
+  ?y wdt:P31 wd:Q11173.
+  ?y wdt:P638 ?pdb .
+}
+```
