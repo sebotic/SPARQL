@@ -552,3 +552,23 @@ SELECT distinct ?x ?y WHERE {
   ?y wdt:P638 ?pdb .
 }
 ```
+##### Get all componds out of a list of QIDs, also get all InChI keys which start with certain letters, return a bunch of chem identifiers.
+[Execute](http://tinyurl.com/mat2ghv)
+
+```sparql
+ SELECT DISTINCT * WHERE {
+   {
+     SELECT * WHERE {
+   		VALUES ?c { wd:Q423111 wd:Q28276886 }
+    	?c wdt:P31 wd:Q11173 . 
+   }} UNION
+   {
+     SELECT * WHERE {
+   		?c wdt:P235 ?ikey . FILTER (STRSTARTS(?ikey, 'BSY'))
+   }}
+   OPTIONAL { ?c wdt:P662 ?cid . }
+   OPTIONAL { ?c wdt:P661 ?csid . }
+   OPTIONAL { ?c wdt:P235 ?ikey . }
+   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }  
+}
+```
