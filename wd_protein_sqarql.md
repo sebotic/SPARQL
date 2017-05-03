@@ -217,3 +217,11 @@ SELECT DISTINCT ?c ?cLabel ?component ?componentLabel WHERE {
 
 ORDER BY ?c
 ```
+#### Get all GO terms of type 'Biological Process'
+[Execute](http://tinyurl.com/lyue9wk)
+```sparql
+SELECT ?go ?goLabel WHERE {
+  ?go wdt:P31 wd:Q2996394 .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
+}
+```
