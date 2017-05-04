@@ -572,3 +572,18 @@ SELECT distinct ?x ?y WHERE {
    SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }  
 }
 ```
+##### Get all chemical compounds which have a PDB Id, get the human proteins which share the same PDB ID and return that. This essentially gives a list of all human protein crystal structures with their ligands
+[Execute](http://tinyurl.com/lgfwynj)
+
+```sparql
+SELECT DISTINCT ?compound ?compoundLabel ?pdb ?proteinLabel ?protein WHERE {
+  ?protein wdt:P279 wd:Q8054.
+  ?protein wdt:P703 wd:Q15978631.
+  ?protein wdt:P638 ?pdb .
+  
+  ?compound wdt:P638 ?pdb .
+  ?compound wdt:P31 wd:Q11173 .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . } 
+}
+```
