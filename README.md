@@ -295,3 +295,15 @@ select distinct ?q ?label ?article where {
   #Filter not exists {?q wdt:P699 ?doid .}
 }
 ```
+##### Get scientific publications (in PubMed) from Wikidata
+[Execute](http://tinyurl.com/lthl2y4)
+
+The limit is required here, because Wikidata currently (May 2017) has 600K publications, retrieving all publication titles would lead to a query timeout.
+
+```sparql
+SELECT ?pub ?pubLabel ?PMID WHERE { 
+  ?pub wdt:P698 ?PMID. 
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
+}
+LIMIT 5000
+```
