@@ -101,3 +101,21 @@ SELECT ?gene ?geneLabel ?wdncbi ?start ?stop ?disease_text WHERE {
     FILTER(REGEX(?disease_text, "Colorectal cancer", "i"))
 }
 ```
+
+#### Get all human proteins and their full labels from Uniprot
+[Execute](http://tinyurl.com/lvptyxk)
+
+```sparql
+PREFIX up:<http://purl.uniprot.org/core/> 
+PREFIX taxon:<http://purl.uniprot.org/taxonomy/> 
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#> 
+
+SELECT ?protein ?name WHERE
+{
+	?protein a up:Protein .
+  	?protein up:organism taxon:9606 .
+	?protein up:recommendedName ?recommended .
+	?recommended up:fullName ?name .
+	 # ?protein <http://www.w3.org/2000/01/rdf-schema#label> ?label . #this can be used as a quick way to get to the label
+}
+```
