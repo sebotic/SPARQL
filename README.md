@@ -307,3 +307,19 @@ SELECT ?pub ?pubLabel ?PMID WHERE {
 }
 LIMIT 5000
 ```
+##### Get all disease labels and aliases
+[Execute](http://tinyurl.com/yck7pbmu)
+```sparql
+SELECT DISTINCT ?d ?label ?alias WHERE {
+  {?d wdt:P31 wd:Q12136 .} UNION
+  {?d wdt:P494 ?icd10 . } UNION
+  {?d wdt:P557 ?diseasedb } UNION
+  {?d wdt:P492 ?omim }
+  
+  ?d rdfs:label ?label . FILTER(lang(?label) = 'en' )
+  
+  OPTIONAL {
+     ?d skos:altLabel ?alias . FILTER(lang(?alias) = 'en' )
+  }
+}
+```
