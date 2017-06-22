@@ -54,7 +54,7 @@ SELECT DISTINCT ?gene ?geneLabel ?mir ?mirLabel WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" .}
 }
 ```
-#### For these genes involved in regulation of immune reponse, are there drug which modulate the immune response, by targeting one of these gene?
+#### For these genes involved in regulation of immune reponse, are there drugs which modulate the immune response, by targeting one of these gene?
 [Execute](http://tinyurl.com/j79gvfq)
 ```sparql
 SELECT DISTINCT ?gene ?geneLabel ?mir ?mirLabel ?drug ?drugLabel WHERE {
