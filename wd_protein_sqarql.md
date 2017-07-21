@@ -225,3 +225,18 @@ SELECT ?go ?goLabel WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
 }
 ```
+
+#### Retrieve all genes/proteins from all pathways and sort them by most genes per pathway
+[Execute](http://tinyurl.com/y8ga85a6)
+
+```sparql
+SELECT ?p ?pLabel (count(?p) AS ?pcount) WHERE {
+  ?p wdt:P2410 ?wikipathways_id .
+  ?p wdt:P527 ?gene .
+  ?gene wdt:P31 wd:Q7187 .
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
+}
+GROUP BY ?p ?pLabel
+ORDER BY DESC(?pcount) 
+```
