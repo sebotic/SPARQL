@@ -168,6 +168,7 @@ SELECT * WHERE {
   {?p wdt:P682 [wdt:P686 ?go] .}
 }
 ```
+
 #### Get all protein which [bind p53](https://www.wikidata.org/wiki/Q14817974) (as annotated by Gene Ontology) and the chemical compounds which can inhibit/modulate those proteins.
 
 [Execute](http://tinyurl.com/zdfmot2)
@@ -194,7 +195,7 @@ SELECT * WHERE {
 #### Get all human proteins with have at least on PDB structure
 [Execute](http://tinyurl.com/grf6qo5)
 
-````sparql
+```sparql
 SELECT DISTINCT ?p WHERE {
   ?p wdt:P703 wd:Q15978631.
   ?p wdt:P352 ?uniprot .
