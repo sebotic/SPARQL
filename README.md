@@ -17,7 +17,7 @@ select distinct * where {
 ```
 [Execute](http://tinyurl.com/zmz4ekt)
 
-<br/>
+
 ##### A query to retrieve all Gene Ontology annotations for genes regulated by the human miRNA [hsa-miR-127-3p](https://www.wikidata.org/wiki/Q23839066):
 
 ```sparql
