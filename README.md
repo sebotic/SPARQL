@@ -193,20 +193,19 @@ ORDER BY ?geneLabel
 ```
 <br/>
 ##### Get counts for all human gene subclasses
-[Execute](http://tinyurl.com/j4z5kzf)
+[Execute](http://tinyurl.com/y7ws9uwl)
 
 ```sparql
-SELECT DISTINCT ?subc ?subcLabel (COUNT(?subc) as ?count) WHERE {
-    ?g wdt:P351 ?entrez .
+SELECT DISTINCT ?subc ?subcLabel (count(?subc) as ?count) WHERE {
+	?g wdt:P351 ?entrez .
     ?g wdt:P703 wd:Q15978631 .
   
     ?g wdt:P279 ?subc .
   
-    SERVICE wikibase:label {
-    	bd:serviceParam wikibase:language "en" .
-    }  
+  	SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }  
 }
 GROUP BY ?subc ?subcLabel
+ORDER BY DESC(?count)
 ```
 <br/>
 ##### Get all databases and bio-databases which are in Wikidata
