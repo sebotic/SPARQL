@@ -174,7 +174,6 @@ SELECT ?substance ?substanceLabel WHERE {
 }
 ```
 
-</br>
 ##### Retrieve all chemical identifiers and properties currently in Wikidata
 [execute](http://tinyurl.com/zy5ry5q)
 ```sparql
@@ -254,7 +253,7 @@ SELECT * WHERE {
 }
 ORDER BY ?cmpnd
 ```
-</br>
+
 Extended version of the above query, which should aggregate all items which return more than one value per statement. Unformtunately, that does not work with query.wikidata.org, because the query string is too long. But it can be shortened as desired. 
 
 ```sparql
