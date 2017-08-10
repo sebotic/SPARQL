@@ -25,18 +25,18 @@ PREFIX wd: <http://www.wikidata.org/entity/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-select distinct ?protein ?label ?go_id ?go_label ?go where {
+SELECT DISTINCT ?protein ?label ?go_id ?go_label ?go WHERE {
 	wd:Q23839066 wdt:P128 [wdt:P688 ?protein] .
   	?protein wdt:P681 ?go .
-  	?protein rdfs:label ?label filter (lang(?label) = "en") .
+  	?protein rdfs:label ?label FILTER (lang(?label) = "en") .
   	?go wdt:P686 ?go_id .
-  	?go rdfs:label ?go_label filter (lang(?go_label) = "en") .
-} order by ?label
+  	?go rdfs:label ?go_label FILTER (lang(?go_label) = "en") .
+} ORDER BY ?label
 
 ```
 [Execute](http://tinyurl.com/gpj48ps)
 
-<br/>
+
 ##### A query to retrieve all property names present on a gene with NCBI entrez gene ID (in this case FOXP3). This is using standard wikidata namespace.
 
 Using the wikibase: namespace this can be done more efficiently, as id does not require the string operations to get to the entity (wd:) namespace.
