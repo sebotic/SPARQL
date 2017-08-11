@@ -406,10 +406,10 @@ WHERE {
     OPTIONAL{?cmpnd wdt:P2796 ?3dmet_id_1 .}
     OPTIONAL{?cmpnd wdt:P3013 ?surface_tension_1 .}
     OPTIONAL{?cmpnd wdt:P2993 ?part_coeff_water_oct_1 .}
-  	OPTIONAL{?cmpnd wdt:P3078 ?standard_enthalpy_of_formation_1 .}
-  	OPTIONAL{?cmpnd wdt:P3071 ?standard_molar_entropy_1 .}
-  	OPTIONAL{?cmpnd wdt:P3070 ?dynamic_viscosity_1 .} 
-  	OPTIONAL{?cmpnd wdt:P2118  ?kinematic_viscosity_1 .}
+    OPTIONAL{?cmpnd wdt:P3078 ?standard_enthalpy_of_formation_1 .}
+    OPTIONAL{?cmpnd wdt:P3071 ?standard_molar_entropy_1 .}
+    OPTIONAL{?cmpnd wdt:P3070 ?dynamic_viscosity_1 .}
+    OPTIONAL{?cmpnd wdt:P2118  ?kinematic_viscosity_1 .}
 }
 GROUP BY ?cmpnd
 ```
@@ -449,6 +449,22 @@ SELECT DISTINCT * WHERE {
     OPTIONAL{?cmpnd wdt:P2017 ?ismiles .}
 }
 ORDER BY ?cmpnd
+```
+
+##### A different way of performing the same task as above (getting all values for all chemical compounds). Retrieve all properties which are ['related to chemistry.'](https://www.wikidata.org/wiki/Q21294996)
+[Execute](http://tinyurl.com/yay6br62)
+```sparql
+SELECT ?cmpnd ?value ?p WHERE {
+  ?property wdt:P31 wd:Q21294996 .
+  ?property wikibase:directClaim ?p .
+  
+  {?cmpnd wdt:P279 wd:Q11173 .} UNION
+  {?cmpnd wdt:P31 wd:Q11173 .}
+    
+  ?cmpnd ?p ?value . 
+}
+GROUP BY ?cmpnd ?p ?value
+#LIMIT 10000
 ```
 
 ##### Get all Wikidata items with a novalue PubChem ID:
