@@ -1,19 +1,21 @@
 #### Some queries to explore chemical compounds in Wikidata
 
 ##### Get all Wikidata properties related to chemistry
-[execute](http://tinyurl.com/y9b97zre)
+[execute](http://tinyurl.com/y8xb5nsk)
 ```sparql
 SELECT ?property ?propertyLabel  WHERE {
-  ?property wdt:P31 wd:Q21294996 .
+  {?property wdt:P31 wd:Q21294996 .} UNION
+  {?property wdt:P31 wd:Q19833835 .}
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
 }
 ```
 
 ##### Get all Wikidata properties related to chemistry plus the direct claims
-[execute](http://tinyurl.com/yba5fqcg)
+[execute](http://tinyurl.com/ya9qukww)
 ```sparql
 SELECT * WHERE {
-  ?property wdt:P31 wd:Q21294996 .
+  {?property wdt:P31 wd:Q21294996 .} UNION
+  {?property wdt:P31 wd:Q19833835 .}
   ?property wikibase:directClaim ?p .
 }
 ```
