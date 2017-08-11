@@ -9,6 +9,15 @@ SELECT ?property ?propertyLabel  WHERE {
 }
 ```
 
+##### Get all Wikidata properties related to chemistry plus the direct claims
+[execute](http://tinyurl.com/yba5fqcg)
+```sparql
+SELECT * WHERE {
+  ?property wdt:P31 wd:Q21294996 .
+  ?property wikibase:directClaim ?p .
+}
+```
+
 ##### A query to retrieve all [chemical compounds](https://www.wikidata.org/wiki/Q11173)
 Chemical compounds can either be [instance of](https://www.wikidata.org/wiki/Property:P31) or [subclass of](https://www.wikidata.org/wiki/Property:P279). On the long run, this should be unified to the semantically more appropriate '[subclass of](https://www.wikidata.org/wiki/Property:P279)' aka [is a](http://www.w3.org/2000/01/rdf-schema#subClassOf).
 
