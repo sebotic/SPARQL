@@ -1,6 +1,17 @@
 # SPARQL
 collection of SPARQL queries
 
+##### Get the domains of knowledge associated with each Wikidata property
+[Execute](http://tinyurl.com/y894l6tz)
+```sparql
+SELECT ?property ?propertyLabel ?x ?xLabel WHERE {
+  ?property wdt:P31 ?x .
+  ?property wikibase:directClaim ?p .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . } 
+}
+```
+
 ##### A query to retrieve all protein coding genes regulated by human miRNA hsa-miR-127-3p: 
 
 ```sparql
