@@ -268,3 +268,13 @@ SELECT DISTINCT * WHERE {
 }
 
 ```
+
+#### Get all drug items which have manufacturer/developer information 
+[Execute](http://tinyurl.com/y74r3a8k)
+```sparql
+SELECT ?drug ?drugLabel ?manufacturer ?manufacturerLabel WHERE {
+  ?drug wdt:P31 wd:Q12140 .
+  ?drug wdt:P176 ?manufacturer .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
+}
+```
