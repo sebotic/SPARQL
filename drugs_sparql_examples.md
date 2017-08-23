@@ -278,3 +278,17 @@ SELECT ?drug ?drugLabel ?manufacturer ?manufacturerLabel WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". }
 }
 ```
+#### Get all Wikipathways pathways which have drug targets in them, get all drugs too
+[Execute](http://tinyurl.com/yd8ac3je)
+
+```sparql
+SELECT ?wpid ?gene ?geneLabel ?protei ?proteinLabel ?compound ?compoundLabel WHERE {
+  wd:Q29883419 wdt:P2410 ?wpid;
+    wdt:P527 ?gene.
+  ?gene wdt:P688 ?protein.
+  
+  ?protein wdt:P129 ?compound .
+  
+   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
