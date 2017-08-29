@@ -625,3 +625,17 @@ SELECT DISTINCT ?compound ?compoundLabel ?pdb ?proteinLabel ?protein WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . } 
 }
 ```
+
+##### Get all Wikidata items referenced with Guide To Pharmacology
+[Execute](http://tinyurl.com/y9xwore5)
+
+```sparql
+SELECT DISTINCT ?item ?itemLabel WHERE {
+  {?ref pr:P248 wd:Q17091219 .} UNION
+  {?ref pr:P595 ?gtpl . }
+  ?wds prov:wasDerivedFrom ?ref .
+  ?item ?p ?wds .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
