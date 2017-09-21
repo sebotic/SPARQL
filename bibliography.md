@@ -1,7 +1,8 @@
 ## A set of SPARQL queries to retrieve and explore bibliography data in Wikidata and Colil
 
 
-##### Retrieve the citation count of all papers cited by [Q37686905](https://www.wikidata.org/w/Q37686905)
+##### Retrieve the citation count of all papers cited by [Q37686905](https://www.wikidata.org/wiki/Q37686905)
+[Execute](http://tinyurl.com/ydfeqtqk)
 
 ```sparql
 SELECT (COUNT(?cited) AS ?count) ?cited ?title ?pubdate WHERE {
