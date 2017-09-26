@@ -333,3 +333,12 @@ SELECT DISTINCT ?d ?label ?alias WHERE {
   }
 }
 ```
+
+##### Get all triples from all items which have the Uniprot ID 'Q8NEB7' as a reference to a statement
+[Execute](http://tinyurl.com/yawldmjq)
+```sparql
+DESCRIBE ?x WHERE {
+  ?s prov:wasDerivedFrom/pr:P352 'Q8NEB7' .
+  ?x ?a ?s .
+}
+```
