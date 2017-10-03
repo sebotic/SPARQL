@@ -639,3 +639,14 @@ SELECT DISTINCT ?item ?itemLabel WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
 ```
+
+##### Get compounds which are ATPase inhibitors (subclass of aka is_a)
+[Execute](http://tinyurl.com/y7xgcmmx)
+
+```sparql
+SELECT ?compound ?compoundLabel ?term ?termLabel WHERE {
+  ?term wdt:P683 '78928' .
+  ?compound wdt:P279 ?term .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
