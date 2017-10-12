@@ -306,3 +306,16 @@ SELECT ?compound ?compoundLabel ?category ?categoryLabel WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
 ```
+
+#### What diseases can be treated with dermatologic drugs?
+[Execute](http://tinyurl.com/y7nbhzjg)
+```sparql
+SELECT ?compound ?compoundLabel ?category ?categoryLabel ?disease ?diseaseLabel WHERE {
+  ?compound wdt:P2868 ?category .
+  ?category wdt:P279* wd:Q41825808 .
+  
+  OPTIONAL {?compound wdt:P2175 ?disease .}
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
