@@ -292,3 +292,17 @@ SELECT ?wpid ?gene ?geneLabel ?protei ?proteinLabel ?compound ?compoundLabel WHE
    SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
 ```
+
+## Drug classes/categories
+
+#### Get all subcategories of dermatologic drug and their members
+[Execute](http://tinyurl.com/yayb5a55)
+
+```sparql
+SELECT ?compound ?compoundLabel ?category ?categoryLabel WHERE {
+  ?compound wdt:P2868 ?category .
+  ?category wdt:P279* wd:Q41825808 .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
