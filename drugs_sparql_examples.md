@@ -319,3 +319,17 @@ SELECT ?compound ?compoundLabel ?category ?categoryLabel ?disease ?diseaseLabel 
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
 ```
+
+#### What are the known targets in a cell hit by drugs of the category [dermatologic drugs](http://www.wikidata.org/entity/Q41825808)
+[Execute](http://tinyurl.com/y7e97oqo)
+
+```sparql
+SELECT ?compound ?compoundLabel ?category ?categoryLabel ?target ?targetLabel WHERE {
+  ?compound wdt:P2868 ?category .
+  ?category wdt:P279* wd:Q41825808 .
+  
+  OPTIONAL {?compound wdt:P129 ?target .}
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
