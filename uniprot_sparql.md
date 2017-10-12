@@ -119,3 +119,19 @@ SELECT ?protein ?name WHERE
 	 # ?protein <http://www.w3.org/2000/01/rdf-schema#label> ?label . #this can be used as a quick way to get to the label
 }
 ```
+#### Get all human proteins and their full labels from Uniprot (alternative way)
+[Execute](http://tinyurl.com/y84wktoq)
+```sparql
+PREFIX up:<http://purl.uniprot.org/core/> 
+PREFIX taxon:<http://purl.uniprot.org/taxonomy/> 
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#> 
+
+SELECT ?protein ?label WHERE
+{
+	?protein a up:Protein .
+  	?protein up:organism taxon:9606 .
+	?protein up:recommendedName ?recommended .
+	
+	?protein <http://www.w3.org/2000/01/rdf-schema#label> ?label . 
+}
+```
