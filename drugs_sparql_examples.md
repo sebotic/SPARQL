@@ -295,7 +295,7 @@ SELECT ?wpid ?gene ?geneLabel ?protei ?proteinLabel ?compound ?compoundLabel WHE
 
 ## Drug classes/categories
 
-#### Get all subcategories of dermatologic drug and their members
+#### Get all subcategories of [dermatologic drug](http://www.wikidata.org/entity/Q41825808) and their members
 [Execute](http://tinyurl.com/yayb5a55)
 
 ```sparql
@@ -307,7 +307,7 @@ SELECT ?compound ?compoundLabel ?category ?categoryLabel WHERE {
 }
 ```
 
-#### What diseases can be treated with dermatologic drugs?
+#### What diseases can be treated with [dermatologic drugs](http://www.wikidata.org/entity/Q41825808)?
 [Execute](http://tinyurl.com/y7nbhzjg)
 ```sparql
 SELECT ?compound ?compoundLabel ?category ?categoryLabel ?disease ?diseaseLabel WHERE {
