@@ -295,7 +295,7 @@ SELECT ?wpid ?gene ?geneLabel ?protei ?proteinLabel ?compound ?compoundLabel WHE
 
 ## Drug classes/categories
 
-#### Get all subcategories of [dermatologic drug](http://www.wikidata.org/entity/Q41825808) and their members
+#### Get all subcategories of [dermatologic drug](http://www.wikidata.org/entity/Q41825808) and the actual compounds
 [Execute](http://tinyurl.com/yayb5a55)
 
 ```sparql
