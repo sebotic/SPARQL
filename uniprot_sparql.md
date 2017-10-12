@@ -1,5 +1,7 @@
 # A few SPARQL queries for Uniprot
 
+The full Uniprot RDF schema can be found [here](http://www.uniprot.org/format/uniprot_rdf)
+
 #### Retrieve the Uniprot IDs for Swissprot entries based on the Entrez gene ID 1029 (CDKN2A)
 [execute](http://sparql.uniprot.org/sparql/?format=html&query=PREFIX+up%3A%3Chttp%3A%2F%2Fpurl.uniprot.org%2Fcore%2F%3E+%0D%0APREFIX+rdfs%3A%3Chttp%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23%3E+%0D%0A%0D%0A%0D%0A++++SELECT+DISTINCT+%3Funiprot+%3Fgene+WHERE+{%0D%0A++++++++BIND%28IRI%28CONCAT%28%22http%3A%2F%2Fpurl.uniprot.org%2Fgeneid%2F%22%2C+%271029%27%29%29+as+%3Fgene%29%0D%0A++++++++%3Funiprot+rdfs%3AseeAlso+%3Fgene+.%0D%0A++++++++%3Funiprot+up%3Areviewed+%22true%22^^xsd%3Aboolean+.%0D%0A++++}%0D%0A++++GROUP+BY+%3Funiprot+%3Fgene)
 
