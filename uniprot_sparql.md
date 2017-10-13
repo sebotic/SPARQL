@@ -137,3 +137,34 @@ SELECT ?protein ?label WHERE
 	?protein <http://www.w3.org/2000/01/rdf-schema#label> ?label . 
 }
 ```
+
+#### Get all human and mouse proteins with annotation for celluar localization and membrane protein type, if available.
+[Execute](http://tinyurl.com/y8nel2lm)
+```sparql
+PREFIX up:<http://purl.uniprot.org/core/> 
+PREFIX taxon:<http://purl.uniprot.org/taxonomy/> 
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#> 
+
+SELECT distinct 
+?protein ?taxon ?taxonLabel ?topology ?topologyLabel ?cellularComponent ?cellularComponentLabel
+
+WHERE
+{
+  ?protein a up:Protein .
+  {?protein up:organism taxon:9606 .} 
+  UNION
+  {?protein up:organism taxon:10090 .}
+  
+  ?protein up:organism ?taxon .
+  ?taxon up:scientificName ?taxonLabel .
+  ?protein up:annotation/up:locatedIn ?annotation .
+  OPTIONAL {
+    ?annotation up:topology ?topology .
+    ?topology skos:prefLabel ?topologyLabel . 
+  }
+  OPTIONAL {
+    ?annotation up:cellularComponent ?cellularComponent . 
+    ?cellularComponent skos:prefLabel ?cellularComponentLabel .
+  }
+}
+```
