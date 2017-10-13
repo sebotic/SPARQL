@@ -168,3 +168,37 @@ WHERE
   }
 }
 ```
+#### Same as above, but with ECO evidence codes
+[Execute](http://tinyurl.com/y795wcgu)
+
+```sparql
+PREFIX up:<http://purl.uniprot.org/core/> 
+PREFIX taxon:<http://purl.uniprot.org/taxonomy/> 
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#> 
+
+SELECT distinct 
+?protein ?taxon ?taxonLabel ?topology ?topologyLabel ?cellularComponent ?cellularComponentLabel ?evidence
+
+WHERE
+{
+  ?protein a up:Protein .
+  {?protein up:organism taxon:9606 .} 
+  UNION
+  {?protein up:organism taxon:10090 .}
+  
+  ?protein up:attribution ?attribution .
+  ?attribution up:evidence ?evidence .
+  
+  ?protein up:organism ?taxon .
+  ?taxon up:scientificName ?taxonLabel .
+  ?protein up:annotation/up:locatedIn ?annotation .
+  OPTIONAL {
+    ?annotation up:topology ?topology .
+    ?topology skos:prefLabel ?topologyLabel . 
+  }
+  OPTIONAL {
+    ?annotation up:cellularComponent ?cellularComponent . 
+    ?cellularComponent skos:prefLabel ?cellularComponentLabel .
+  }
+}
+```
