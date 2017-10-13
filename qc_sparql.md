@@ -117,3 +117,14 @@ SELECT ?x ?t ?xLabel ?unii WHERE {
 
 }
 ```
+##### Get all items with ChEBI IDs but withouth InChI key
+[Execute](http://tinyurl.com/ybupm2h4)
+
+```sparql
+SELECT ?c ?cLabel WHERE {
+  {?c wdt:P683 ?chebi .} MINUS 
+  {?c wdt:P235 [] .}
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
