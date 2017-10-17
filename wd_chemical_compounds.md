@@ -668,3 +668,14 @@ SELECT ?compound ?compoundLabel ?conjugate_acid ?conjugate_acidLabel WHERE {
 
 }
 ```
+##### Get all Wikipedia categories in Wikidata which have a chemical compound or a chemcial substance as their main subject
+[Execute](http://tinyurl.com/y997amh5)
+```sparql
+SELECT ?main_topic ?main_topicLabel ?cat ?catLabel WHERE {
+  ?cat wdt:P301 ?main_topic .
+  {?main_topic wdt:P31 wd:Q11173 . } UNION
+  {?main_topic wdt:P31 wd:Q79529 .}
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
