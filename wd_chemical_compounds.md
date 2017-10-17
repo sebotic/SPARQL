@@ -650,3 +650,21 @@ SELECT ?compound ?compoundLabel ?term ?termLabel WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
 ```
+##### Get all compounds with their conjugate base in Wikidata
+[Execute](http://tinyurl.com/yc2as6vm)
+```sparql
+SELECT ?compound ?compoundLabel ?conjugate_base ?conjugate_baseLabel WHERE {
+  ?compound wdt:P4149 ?conjugate_base .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
+
+##### Get all compounds with their conjugate acid in Wikidata
+[Execute](http://tinyurl.com/yatxore7)
+```sparql
+SELECT ?compound ?compoundLabel ?conjugate_acid ?conjugate_acidLabel WHERE {
+  ?compound wdt:P4147 ?conjugate_acid .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+
+}
+```
