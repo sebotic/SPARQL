@@ -39,9 +39,10 @@ GROUP BY ?cited ?title ?pubdate
 
 #### SPARQL query to get a specific set of data for a publication
 [Execute](http://tinyurl.com/y992rslf)
+
 ```sparql
-select * where {
-  values ?props {wdt:P698 wdt:P932 wdt:P1476 wdt:P2093 wdt:P50 wdt:P356 wdt:P577 wdt:P433 wdt:P304 wdt:P478 wdt:P1433 wdt:P932}   
+SELECT * WHERE {
+  VALUES ?props {wdt:P698 wdt:P932 wdt:P1476 wdt:P2093 wdt:P50 wdt:P356 wdt:P577 wdt:P433 wdt:P304 wdt:P478 wdt:P1433 wdt:P932}   
   wd:Q37658381 ?props ?v .
   wd:Q37658381 wdt:P1433 ?journal .
   ?journal wdt:P1476 ?journal_title . 
