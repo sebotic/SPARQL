@@ -1,3 +1,15 @@
+#### Get all approved drugs in Wikidata
+[Execute](http://tinyurl.com/ybr3jgfk)
+```sparql
+SELECT ?c ?cLabel WHERE {
+  {?c wdt:P31 wd:Q11173} UNION
+  {?c wdt:P31 wd:Q79529}
+  ?c wdt:P31 wd:Q12140 .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". } 
+}
+``` 
+
 #### Get approved drugs which also have indication information
 [Execute](http://tinyurl.com/ht8a49a)
 
