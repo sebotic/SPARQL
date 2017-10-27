@@ -98,7 +98,6 @@ SELECT DISTINCT ?prop ?pLabel WHERE {
 }     
 ```
 
-<br/>
 ##### Count all triples in a triple store:
 [Execute](http://tinyurl.com/j8h5rxh) (on query.wikidata.org)
 
@@ -109,7 +108,7 @@ select (count(*) as ?count) where {
 }
 
 ```
-<br/>
+
 ##### Get all statement properties of a certain item, here the gene with Entrez ID 50943
 [Execute](http://tinyurl.com/jtydugn)
 
