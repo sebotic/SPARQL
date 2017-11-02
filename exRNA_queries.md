@@ -250,3 +250,24 @@ SELECT DISTINCT ?exrna ?exrnaLabel ?biofluid ?biofluidLabel ?target_gene ?target
 } 
 ORDER BY ?exrna
 ```
+
+##### Get all exRNAs and their potential targets found in normal human saliva, targets being involved in regulation of double strand break repair, cell proliferation or cell cycle. Also get small molecules interacting with the target genes.
+[Execute](http://tinyurl.com/ycvkvqgv)
+```sparql
+SELECT DISTINCT ?exrna ?exrnaLabel ?target_gene ?target_geneLabel ?compoundLabel WHERE {
+  VALUES ?bioprocesses { wd:Q14860442 wd:Q14818032 wd:Q188941}
+  VALUES ?biofluid { wd:Q155925}
+  
+  ?exrna wdt:P31 wd:Q23838648 .
+  ?biofluid wdt:P31 wd:Q1058795 .
+  ?exrna wdt:P361 ?biofluid .
+  ?exrna wdt:P128 ?target_gene .
+  ?target_gene wdt:P688 ?protein .
+  ?protein wdt:P682 ?bioprocesses .
+  
+  ?compound wdt:P129 ?protein .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+} 
+ORDER BY ?exrna
+```
