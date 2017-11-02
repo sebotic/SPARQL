@@ -212,7 +212,7 @@ SELECT DISTINCT ?gene ?geneLabel ?start ?stop ?strand_orientation WHERE {
 ORDER BY ?geneLabel
 ```
 
-##### Get all exRNAs found in human saliva
+##### Get all exRNAs found in normal human saliva
 [Execute](http://tinyurl.com/y6wh5xxb)
 ```sparql
 SELECT DISTINCT ?exrna ?exrnaLabel WHERE {
@@ -221,4 +221,16 @@ SELECT DISTINCT ?exrna ?exrnaLabel WHERE {
   
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
+```
+##### Get all exRNAs found in normal human saliva and the counts of genes these exRNAs regulate
+[Execute](http://tinyurl.com/yaxswy8o)
+```sparql
+SELECT DISTINCT ?exrna ?exrnaLabel (count(?target_gene) as ?tgc) WHERE {
+  ?exrna wdt:P31 wd:Q23838648 .
+  ?exrna wdt:P361 wd:Q155925 .
+  ?exrna wdt:P128 ?target_gene .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+} 
+GROUP BY ?exrna ?exrnaLabel
 ```
