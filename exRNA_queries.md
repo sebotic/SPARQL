@@ -235,7 +235,7 @@ SELECT DISTINCT ?exrna ?exrnaLabel (count(?target_gene) as ?tgc) WHERE {
 GROUP BY ?exrna ?exrnaLabel
 ```
 
-##### Get all exRNAs found in any biofluid which can regulate the tumor suppressor genes BRCA1, BRCA2 or CDKN2A
+##### Get all exRNAs found in any biofluid which can regulate the tumor suppressor genes [BRCA1](http://www.wikidata.org/entity/Q227339), [BRCA2](http://www.wikidata.org/entity/Q17853272) or [CDKN2A](http://www.wikidata.org/entity/Q5009957)
 [Execute](http://tinyurl.com/yca882yu)
 ```sparql
 SELECT DISTINCT ?exrna ?exrnaLabel ?biofluid ?biofluidLabel ?target_gene ?target_geneLabel WHERE {
