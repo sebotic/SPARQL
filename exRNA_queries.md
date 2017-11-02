@@ -271,3 +271,18 @@ SELECT DISTINCT ?exrna ?exrnaLabel ?target_gene ?target_geneLabel ?compoundLabel
 } 
 ORDER BY ?exrna
 ```
+
+##### Get all pathways which might be regulated by exRNAs found in saliva, based on the target genes of the exRNAs
+[Execute](http://tinyurl.com/y8a8r9ho)
+```sparql
+SELECT DISTINCT ?exrna ?exrnaLabel ?target_gene ?target_geneLabel ?pw ?pwLabel WHERE {
+  ?exrna wdt:P31 wd:Q23838648 .
+  ?exrna wdt:P361 wd:Q155925 .
+  ?exrna wdt:P128 ?target_gene .
+  ?pw wdt:P2410 ?wpid .
+  ?pw wdt:P527 ?target_gene .
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+ORDER BY ?exrna
+```
