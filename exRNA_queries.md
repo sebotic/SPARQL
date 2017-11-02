@@ -236,7 +236,7 @@ GROUP BY ?exrna ?exrnaLabel
 ```
 
 ##### Get all exRNAs found in any biofluid which can regulate the tumor suppressor genes [BRCA1](http://www.wikidata.org/entity/Q227339), [BRCA2](http://www.wikidata.org/entity/Q17853272) or [CDKN2A](http://www.wikidata.org/entity/Q5009957)
-[Execute](http://tinyurl.com/yca882yu)
+[Execute](http://tinyurl.com/yabtael8)
 ```sparql
 SELECT DISTINCT ?exrna ?exrnaLabel ?biofluid ?biofluidLabel ?target_gene ?target_geneLabel WHERE {
   VALUES ?target_gene {wd:Q227339 wd:Q17853272 wd:Q5009957} 
@@ -244,7 +244,7 @@ SELECT DISTINCT ?exrna ?exrnaLabel ?biofluid ?biofluidLabel ?target_gene ?target
   ?exrna wdt:P31 wd:Q23838648 .
   ?biofluid wdt:P31 wd:Q1058795 .
   ?exrna wdt:P361 ?biofluid .
-  ?exrna wdt:P128 wd:Q227339 .
+  ?exrna wdt:P128 ?target_gene .
   
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 } 
