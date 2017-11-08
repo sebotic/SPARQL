@@ -217,25 +217,29 @@ SELECT DISTINCT ?subc ?subcLabel (count(?subc) as ?count) WHERE {
 GROUP BY ?subc ?subcLabel
 ORDER BY DESC(?count)
 ```
-<br/>
-##### Get all databases and bio-databases which are in Wikidata
+
+##### Get all databases and bio-databases which are in Wikidata, and optionally, the property mapping to a certain database
 Classified by instance of (P31) (most of them) or subclass of (P279) (a few).
 
-[Execute](http://tinyurl.com/zvfo86t)
+[Execute](http://tinyurl.com/ybwrwpcs)
 
 ```sparql
-SELECT DISTINCT ?d ?dLabel WHERE {
-	{?d wdt:P31 wd:Q8513 .} UNION
-	{?d wdt:P31 wd:Q4117139 .} UNION
-	{?d wdt:P279 wd:Q8513 .} UNION
-	{?d wdt:P279 wd:Q4117139 .}
+SELECT DISTINCT ?db ?dbLabel ?db_prop  WHERE {
+	{?db wdt:P31 wd:Q8513 .} UNION
+	{?db wdt:P31 wd:Q4117139 .} UNION
+	{?db wdt:P279 wd:Q8513 .} UNION
+	{?db wdt:P279 wd:Q4117139 .}
+  
+  OPTIONAL {
+      ?db wdt:P1687 ?db_prop .
+    }
   
 	SERVICE wikibase:label {
 		bd:serviceParam wikibase:language "en" .
 	}
 }
 ```
-<br/>
+
 ##### Get all values with property number and property label on an item (here, [Indole](https://www.wikidata.org/wiki/Q319541))
 [Execute](http://tinyurl.com/hzn6v7d)
 
