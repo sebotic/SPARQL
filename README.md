@@ -345,3 +345,15 @@ DESCRIBE ?x WHERE {
   ?x ?a ?s .
 }
 ```
+
+##### Get labels, formatter url for a list of properties
+[Execute](http://tinyurl.com/yat9f8kc)
+```sparql
+SELECT ?props ?propsLabel ?furl WHERE {
+  VALUES ?props {wd:P274 wd:P231 wd:P662 wd:P661 wd:P592}
+  
+  OPTIONAL {?props wdt:P1630 ?furl .}
+  
+ SERVICE wikibase:label {bd:serviceParam wikibase:language "en" . }
+}
+```
