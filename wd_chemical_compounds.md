@@ -679,3 +679,19 @@ SELECT ?main_topic ?main_topicLabel ?cat ?catLabel WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
 ```
+
+##### Get several properties and all English aliases for [imatinib](http://www.wikidata.org/entity/Q177094)
+[Execute](http://tinyurl.com/ybs8jqsf)
+
+For some reason, this query returns a low number of properties without a value.
+
+
+```sparql
+SELECT ?compound ?compoundLabel ?prop ?id ?idLabel WHERE {
+  VALUES ?compound {wd:Q177094}
+  VALUES ?prop {wdt:P274 wdt:P231 wdt:P662 wdt:P661 wdt:P592 wdt:P3780 wdt:P232 skos:altLabel}
+  OPTIONAL {?compound ?prop ?id filter (isIRI(?id) ||  (lang(?id) = "en" || lang(?id) = "") ) .  }
+
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } 
+}
+```
