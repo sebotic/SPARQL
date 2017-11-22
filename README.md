@@ -201,7 +201,7 @@ SELECT distinct ?gene ?geneLabel ?start ?stop ?strand_orientation WHERE {
 }
 ORDER BY ?geneLabel
 ```
-<br/>
+
 ##### Get counts for all human gene subclasses
 [Execute](http://tinyurl.com/y7ws9uwl)
 
