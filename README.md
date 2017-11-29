@@ -138,7 +138,7 @@ SELECT  *  WHERE {
   }
 }
 ```
-</br>
+
 #### Get all property IDs with an entity URI for 2 different compounds
 [Execute](http://tinyurl.com/zjs6ax2)
 
@@ -152,7 +152,6 @@ SELECT DISTINCT ?property ?propLabel WHERE {
 
 ```
 
-</br>
 ##### Get the latest Wikidata revision ID for all human genes :
 [Execute](http://tinyurl.com/jjgkqr4)
 
@@ -167,7 +166,7 @@ SELECT ?gene ?revision WHERE {
     ?gene schema:version ?revision . 
 }
 ```
-<br/>
+
 ##### Get all human genes on chromosome 9 with a start position between 21 MB and 30 MB.
 [Execute](http://tinyurl.com/ju3t433) <br>
 This query can be potentially useful for e.g. quick annotation of copy number abberations.
