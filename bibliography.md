@@ -48,3 +48,16 @@ SELECT * WHERE {
   ?journal wdt:P1476 ?journal_title . 
 }
 ```
+
+#### Based on a list of Pubmed IDs, get me the corresponding Wikidata publication items
+[Execute](http://tinyurl.com/ycjsqsgm)
+
+```sparql
+SELECT ?x ?pmid ?title ?journal ?journalLabel WHERE {
+  VALUES ?pmid {'27301443' '29275819' '27246926' '29163642' '24912806'}
+  ?x wdt:P698 ?pmid .
+  ?x wdt:P1476 ?title .
+  ?x wdt:P1433 ?journal.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
