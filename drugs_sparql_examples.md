@@ -345,3 +345,14 @@ SELECT ?compound ?compoundLabel ?category ?categoryLabel ?target ?targetLabel WH
   SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
 }
 ```
+
+#### Get pharmaceutical roles of drugs/compounds
+[Execute](http://tinyurl.com/y8tegwe6)
+```sparql
+SELECT ?c ?cLabel ?role ?roleLabel WHERE {
+  ?c wdt:P235 ?ikey .
+  ?c wdt:P2868 ?role .
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en". }
+}
+```
+
