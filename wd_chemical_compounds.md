@@ -695,3 +695,13 @@ SELECT ?compound ?compoundLabel ?prop ?id ?idLabel WHERE {
   SERVICE wikibase:label { bd:serviceParam wikibase:language "en". } 
 }
 ```
+
+##### Get all compounds which have been modified after a certain date
+[Execute](http://tinyurl.com/y8hpeuoy)
+
+```sparql
+SELECT * WHERE {
+  ?c wdt:P235 ?ikey .
+  ?c schema:dateModified ?date FILTER (?date > "2018-03-05T14:45:13"^^xsd:dateTime).
+}
+```
